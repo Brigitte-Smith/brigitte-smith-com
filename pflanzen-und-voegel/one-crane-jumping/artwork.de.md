@@ -1,7 +1,14 @@
 ---
 title: 'One crane jumping'
+size:
+  height:
+    value: 1
+    unit: m
+  width:
+    value: 1
+    unit: m
+year: 2017
+taxonomy:
+  tag:
+    - 'Farbe auf Silber'
 ---
-
-100 x 100 cm
-2019
-Farbe auf Silber
