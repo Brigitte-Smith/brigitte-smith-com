@@ -1,0 +1,19 @@
+{
+  "name": "brigitte-smith-artwork",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "convert": "node index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/absolutholz/Brigitte-Smith-Artwork.git"
+  },
+  "author": "absolutholz <absolutholz@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/absolutholz/Brigitte-Smith-Artwork/issues"
+  },
+  "homepage": "https://github.com/absolutholz/Brigitte-Smith-Artwork#readme"
+}
