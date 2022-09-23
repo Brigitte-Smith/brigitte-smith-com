@@ -1,3 +1,0 @@
----
-title: Wandkollage 3
----

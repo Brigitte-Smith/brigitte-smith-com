@@ -1,0 +1,4 @@
+---
+title: "Skulpturen"
+slug: skulpturen
+---

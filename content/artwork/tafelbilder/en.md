@@ -1,0 +1,4 @@
+---
+title: "Tableaus"
+slug: tableaus
+---

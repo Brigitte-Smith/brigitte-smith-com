@@ -1,0 +1,4 @@
+---
+title: "Acryl"
+slug: acryl
+---

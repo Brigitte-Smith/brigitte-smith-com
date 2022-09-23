@@ -1,0 +1,4 @@
+---
+title: "Sculptures"
+slug: sculptures
+---

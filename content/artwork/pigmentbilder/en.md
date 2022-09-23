@@ -1,0 +1,4 @@
+---
+title: "Pigments"
+slug: pigments
+---

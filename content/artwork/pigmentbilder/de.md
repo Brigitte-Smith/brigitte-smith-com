@@ -1,0 +1,4 @@
+---
+title: "Pigmentbilder"
+slug: pigmentbilder
+---

@@ -1,3 +1,0 @@
----
-title: Illustration 26
----
