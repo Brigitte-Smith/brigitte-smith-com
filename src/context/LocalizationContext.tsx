@@ -1,27 +1,27 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useRouter } from "next/router";
 
-import en from "../../public/locales/en.json";
-import de from "../../public/locales/de.json";
+import en from "../../locales/en.json";
+import de from "../../locales/de.json";
 
 export const LocalizationProvider = ({ children }: { children: ReactNode }) => {
 	const { locale } = useRouter();
 
 	// assign t as either of the translation json files localted in '../locales' according to the current locale
-	const translations = locale === "en" ? en : de;
+	const localization = locale === "en" ? en : de;
 
 	// create app context to retrieve t value across the app
-	const Context = createContext(translations);
+	const Context = createContext(localization);
 
-	return <Context.Provider value={translations}>{children}</Context.Provider>;
+	return <Context.Provider value={localization}>{children}</Context.Provider>;
 };
 
 export function useLocalization() {
 	const { locale } = useRouter();
-	const translations = locale === "en" ? en : de;
+	const localization = locale === "en" ? en : de;
 
 	// create app context to retrieve t value across the app
-	const Context = createContext(translations);
+	const Context = createContext(localization);
 
 	return useContext(Context);
 }
