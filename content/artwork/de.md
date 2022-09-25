@@ -1,4 +1,4 @@
 ---
-title: 'Arbeiten'
-slug: 'arbeiten'
+title: "Arbeiten"
+slug: arbeiten
 ---
