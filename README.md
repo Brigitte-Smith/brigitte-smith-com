@@ -38,3 +38,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ```bash
 $ node ./lib/createDataFile.mjs
 ```
+
+```bash
+$ node ./lib/createLocaleFiles.mjs
+```
+
+## Content with markdown
+
+https://commonmark.org/
+https://commonmark.org/help/
+https://spec.commonmark.org/

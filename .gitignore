@@ -36,5 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 /public/images/artwork
-/public/images/artwork
-/public/locales
+/locales/*
