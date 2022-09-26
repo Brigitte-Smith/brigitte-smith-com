@@ -13,9 +13,8 @@ export function FrameLayout({
 	children: ReactNode;
 }): JSX.Element {
 	const { locale } = useRouter();
-
 	const localization = useLocalization();
-	console.log(localization);
+	// console.log(localization);
 
 	return (
 		<S.FrameLayout>
@@ -45,12 +44,12 @@ export function FrameLayout({
 				<S.FrameLayout_BodyPanels>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localization.about.text}
+							{localization.about.title}
 						</S.FrameLayout_PanelHeadline>
 					</S.FrameLayout_Panel>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localization.artwork.text}
+							{localization.artwork.title}
 						</S.FrameLayout_PanelHeadline>
 					</S.FrameLayout_Panel>
 				</S.FrameLayout_BodyPanels>
@@ -61,7 +60,7 @@ export function FrameLayout({
 
 			<S.FrameLayout_Footer>
 				<Link href={localization.imprint.slug} locale={locale}>
-					{localization.imprint.text}
+					{localization.imprint.title}
 				</Link>
 
 				{locale === "en" ? (
@@ -75,7 +74,7 @@ export function FrameLayout({
 				)}
 
 				<Link href={localization.contact.slug} locale={locale}>
-					{localization.contact.text}
+					{localization.contact.title}
 				</Link>
 			</S.FrameLayout_Footer>
 		</S.FrameLayout>

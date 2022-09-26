@@ -46,4 +46,6 @@ export const FrameLayout_BodyPanels = styled.main`
 	grid-template-rows: auto auto;
 `;
 
-export const FrameLayout_MainContentPanel = styled.div``;
+export const FrameLayout_MainContentPanel = styled.div`
+	min-height: 380px;
+`;
