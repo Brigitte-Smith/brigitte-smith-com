@@ -1,4 +1,4 @@
 ---
-title: "Collagen mit selbstphotographierten Materialien"
-slug: collagen-mit-selbstphotographierten-materialien
+title: "Collages with self-photographed materials"
+slug: collages-with-self-photographed-materials
 ---
