@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { SvgIcon } from "../../components/SvgIcon";
 
+import artworkData from "../../../dataArtwork.json";
+import aboutData from "../../../dataAbout.json";
+
+import { SvgIcon } from "../../components/SvgIcon";
 import { useLocalization } from "../../context/LocalizationContext";
 
 import * as S from "./FrameLayout.styled";
+import { NavigationLinkList } from "../../components/NavigationLinkList";
 
 export function FrameLayout({
 	children,
@@ -14,7 +18,8 @@ export function FrameLayout({
 }): JSX.Element {
 	const { locale } = useRouter();
 	const localization = useLocalization();
-	// console.log(localization);
+
+	console.log({ artworkData, localization });
 
 	return (
 		<S.FrameLayout>
@@ -46,11 +51,33 @@ export function FrameLayout({
 						<S.FrameLayout_PanelHeadline>
 							{localization.about.title}
 						</S.FrameLayout_PanelHeadline>
+						<NavigationLinkList
+							links={aboutData.map(({ id }) => (
+								<Link
+									key={`about-category_${id}`}
+									href={`${localization.about.slug}/${localization[id].slug}`}
+									locale={locale}
+								>
+									{localization[id].title}
+								</Link>
+							))}
+						/>
 					</S.FrameLayout_Panel>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
 							{localization.artwork.title}
 						</S.FrameLayout_PanelHeadline>
+						<NavigationLinkList
+							links={artworkData.map(({ id }) => (
+								<Link
+									key={`artwork-category_${id}`}
+									href={`${localization.artwork.slug}/${localization[id].slug}`}
+									locale={locale}
+								>
+									{localization[id].title}
+								</Link>
+							))}
+						/>
 					</S.FrameLayout_Panel>
 				</S.FrameLayout_BodyPanels>
 				<S.FrameLayout_MainContentPanel>

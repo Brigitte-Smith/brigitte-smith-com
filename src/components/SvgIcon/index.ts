@@ -1,1 +1,1 @@
-export * from "./SvgIcon.styled";
+export * from "./SvgIcon";

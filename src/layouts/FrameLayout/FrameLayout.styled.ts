@@ -28,7 +28,7 @@ export const FrameLayout_Body = styled.main`
 	padding: 10px;
 `;
 
-export const FrameLayout_Panel = styled.section`
+export const FrameLayout_Panel = styled.nav`
 	background: hsl(0deg 0% 87%);
 	padding: 10px;
 `;
@@ -37,6 +37,7 @@ export const FrameLayout_PanelHeadline = styled.h2`
 	font: inherit;
 	font-weight: bold;
 	margin-block: 0;
+	margin-bottom: 8px;
 	text-transform: uppercase;
 `;
 

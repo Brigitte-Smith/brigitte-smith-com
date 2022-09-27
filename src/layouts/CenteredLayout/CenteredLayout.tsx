@@ -6,12 +6,14 @@ import * as S from "./CenteredLayout.styled";
 
 export function CenteredLayout({
 	children,
+	className,
 }: {
 	children: ReactNode;
+	className: string;
 }): JSX.Element {
 	return (
 		<FrameLayout>
-			<S.CenteredLayout>
+			<S.CenteredLayout className={className}>
 				<S.CenteredLayout_Content>{children}</S.CenteredLayout_Content>
 			</S.CenteredLayout>
 		</FrameLayout>
