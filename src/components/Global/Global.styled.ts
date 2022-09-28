@@ -32,4 +32,13 @@ img {
   display: block;
   max-width: 100%;
 }
+
+h1 {
+  font-size: inherit;
+margin-top: 0;
+}
+
+p {
+  max-width: 60ch;
+}
 `;

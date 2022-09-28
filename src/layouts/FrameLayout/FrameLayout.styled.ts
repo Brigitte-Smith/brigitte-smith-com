@@ -30,6 +30,7 @@ export const FrameLayout_Body = styled.main`
 
 export const FrameLayout_Panel = styled.nav`
 	background: hsl(0deg 0% 87%);
+	overflow: hidden;
 	padding: 10px;
 `;
 

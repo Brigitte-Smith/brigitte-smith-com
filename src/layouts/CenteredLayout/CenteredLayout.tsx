@@ -9,7 +9,7 @@ export function CenteredLayout({
 	className,
 }: {
 	children: ReactNode;
-	className: string;
+	className?: string;
 }): JSX.Element {
 	return (
 		<FrameLayout>

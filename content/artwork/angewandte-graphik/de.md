@@ -1,4 +1,4 @@
 ---
-title: "Applied Graphics"
-slug: applied-graphics
+title: "Angewandte Graphik"
+slug: angewandte-graphik
 ---

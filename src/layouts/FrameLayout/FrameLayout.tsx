@@ -11,6 +11,13 @@ import { useLocalization } from "../../context/LocalizationContext";
 import * as S from "./FrameLayout.styled";
 import { NavigationLinkList } from "../../components/NavigationLinkList";
 
+function getArtworkCategoryHref(localization, pageSlug: string) {
+	if (localization.content !== "") {
+		return localization.slug;
+	}
+	return `${localization.slug}/${pageSlug}/1`;
+}
+
 export function FrameLayout({
 	children,
 }: {
@@ -18,8 +25,6 @@ export function FrameLayout({
 }): JSX.Element {
 	const { locale } = useRouter();
 	const localization = useLocalization();
-
-	console.log({ artworkData, localization });
 
 	return (
 		<S.FrameLayout>
@@ -55,7 +60,7 @@ export function FrameLayout({
 							links={aboutData.map(({ id }) => (
 								<Link
 									key={`about-category_${id}`}
-									href={`${localization.about.slug}/${localization[id].slug}`}
+									href={`/${localization.about.slug}/${localization[id].slug}`}
 									locale={locale}
 								>
 									{localization[id].title}
@@ -71,7 +76,12 @@ export function FrameLayout({
 							links={artworkData.map(({ id }) => (
 								<Link
 									key={`artwork-category_${id}`}
-									href={`${localization.artwork.slug}/${localization[id].slug}`}
+									href={`/${
+										localization.artwork.slug
+									}/${getArtworkCategoryHref(
+										localization[id],
+										localization.page.slug
+									)}`}
 									locale={locale}
 								>
 									{localization[id].title}
