@@ -7,6 +7,7 @@ import artworkData from "../../../../../dataArtwork.json";
 import localizations from "../../../../../locales/en.json";
 import { ImageGrid, ImageGridLink } from "../../../../components/ImageGrid";
 import { MetaTitle } from "../../../../components/MetaTitle";
+import { SvgIcon } from "../../../../components/SvgIcon";
 import { useLocalization } from "../../../../context/LocalizationContext";
 import { FrameLayout } from "../../../../layouts/FrameLayout";
 
@@ -44,6 +45,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	let { artwork } = artworkData.find(
 		({ id }) => id === categoryLocalizationId
 	);
+	const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
 	artwork = artwork.filter(
 		(artwork, index) =>
 			index >= (page_number - 1) * ARTWORK_PER_PAGE &&
@@ -54,6 +56,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		props: {
 			categoryLocalizationId,
 			artwork,
+			pageCount,
 		},
 	};
 };
@@ -61,9 +64,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const CategoryNumberedPage: NextPage = ({
 	categoryLocalizationId,
 	artwork,
+	pageCount,
 }: {
 	categoryLocalizationId: string;
 	artwork: { id: string; images: { original: string; webp: string }[] };
+	pageCount: number;
 }) => {
 	const {
 		locale,
@@ -71,13 +76,13 @@ const CategoryNumberedPage: NextPage = ({
 	} = useRouter();
 	const localizations = useLocalization();
 	const { title, slug } = localizations[categoryLocalizationId];
-	console.log(artwork, title, slug, artwork[0]);
+	const pageNumber = parseInt(page_number);
+
 	return (
 		<FrameLayout>
 			<MetaTitle
-				suffix={`${title}, ${localizations.page.text} ${page_number}`}
+				suffix={`${title}, ${localizations.page.text} ${pageNumber}`}
 			/>
-
 			<ImageGrid>
 				{artwork.map((artworkItem) => (
 					<li key={artworkItem.id}>
@@ -108,15 +113,48 @@ const CategoryNumberedPage: NextPage = ({
 					</li>
 				))}
 			</ImageGrid>
-
-			<Link
-				href={`/${localizations.artwork.slug}/${slug}/${localizations.page.slug}/1`}
-				locale={locale}
-			>
-				<a>
-					{localizations.page.text} {page_number}
-				</a>
-			</Link>
+			{pageNumber > 1 && (
+				<Link
+					href={`/${localizations.artwork.slug}/${slug}/${
+						localizations.page.slug
+					}/${pageNumber - 1}`}
+					locale={locale}
+				>
+					<a aria-label={`go to previous page: ${pageNumber - 1}`}>
+						<SvgIcon
+							aria-hidden="true"
+							className="icon"
+							viewBox="0 0 24 24"
+						>
+							<path
+								fill="currentColor"
+								d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+							/>
+						</SvgIcon>
+					</a>
+				</Link>
+			)}
+			{pageCount > 1 && pageNumber < pageCount && (
+				<Link
+					href={`/${localizations.artwork.slug}/${slug}/${
+						localizations.page.slug
+					}/${pageNumber + 1}`}
+					locale={locale}
+				>
+					<a aria-label={`go to next page: ${pageNumber + 1}`}>
+						<SvgIcon
+							aria-hidden="true"
+							className="icon"
+							viewBox="0 0 24 24"
+						>
+							<path
+								fill="currentColor"
+								d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+							/>
+						</SvgIcon>
+					</a>
+				</Link>
+			)}
 		</FrameLayout>
 	);
 };
