@@ -5,4 +5,10 @@ channels:
 page:
   text: "seite"
   slug: "seite"
+nextPage:
+  text: "nächste Seite"
+previousPage:
+  text: "vorige Seite"
+overview:
+  text: "Übersicht"
 ---

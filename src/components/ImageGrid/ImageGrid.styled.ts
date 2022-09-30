@@ -10,7 +10,7 @@ export const ImageGrid = styled.ul`
 	width: 360px;
 `;
 
-export const ImageGridLink = styled.a`
+export const ImageGridLink = styled.div`
 	aspect-ratio: 1 / 1;
 	display: block;
 	position: relative;

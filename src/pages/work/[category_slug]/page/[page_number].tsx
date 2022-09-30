@@ -1,10 +1,10 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
 
 import artworkData from "../../../../../dataArtwork.json";
 import localizations from "../../../../../locales/en.json";
+import { ArtworkColumns } from "../../../../components/ArtworkColumns";
 import { ImageGrid, ImageGridLink } from "../../../../components/ImageGrid";
 import { MetaTitle } from "../../../../components/MetaTitle";
 import { SvgIcon } from "../../../../components/SvgIcon";
@@ -83,78 +83,110 @@ const CategoryNumberedPage: NextPage = ({
 			<MetaTitle
 				suffix={`${title}, ${localizations.page.text} ${pageNumber}`}
 			/>
-			<ImageGrid>
-				{artwork.map((artworkItem) => (
-					<li key={artworkItem.id}>
-						<Link
-							href={`/${localizations.artwork.slug}/${slug}/${
-								localizations[artworkItem.id].slug
-							}`}
-							locale={locale}
-						>
-							<ImageGridLink>
-								<picture>
-									<source
-										srcSet={`/images/artwork/120/${artworkItem.images[0]}`.replace(
-											/.(jpe?g|png)$/i,
-											".webp"
-										)}
-										type="image/webp"
-									/>
-									<img
-										alt={
-											localizations[artworkItem.id].title
-										}
-										src={`/images/artwork/120/${artworkItem.images[0]}`}
-									/>
-								</picture>
-							</ImageGridLink>
-						</Link>
-					</li>
-				))}
-			</ImageGrid>
-			{pageNumber > 1 && (
-				<Link
-					href={`/${localizations.artwork.slug}/${slug}/${
-						localizations.page.slug
-					}/${pageNumber - 1}`}
-					locale={locale}
-				>
-					<a aria-label={`go to previous page: ${pageNumber - 1}`}>
-						<SvgIcon
-							aria-hidden="true"
-							className="icon"
-							viewBox="0 0 24 24"
-						>
-							<path
-								fill="currentColor"
-								d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
-							/>
-						</SvgIcon>
-					</a>
-				</Link>
-			)}
-			{pageCount > 1 && pageNumber < pageCount && (
-				<Link
-					href={`/${localizations.artwork.slug}/${slug}/${
-						localizations.page.slug
-					}/${pageNumber + 1}`}
-					locale={locale}
-				>
-					<a aria-label={`go to next page: ${pageNumber + 1}`}>
-						<SvgIcon
-							aria-hidden="true"
-							className="icon"
-							viewBox="0 0 24 24"
-						>
-							<path
-								fill="currentColor"
-								d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-							/>
-						</SvgIcon>
-					</a>
-				</Link>
-			)}
+			<ArtworkColumns
+				slotImage={
+					<ImageGrid>
+						{artwork.map((artworkItem) => (
+							<li key={artworkItem.id}>
+								<Link
+									href={`/${
+										localizations.artwork.slug
+									}/${slug}/${
+										localizations[artworkItem.id].slug
+									}`}
+									locale={locale}
+								>
+									<a>
+										<ImageGridLink>
+											<picture>
+												<source
+													srcSet={`/images/artwork/120/${artworkItem.images[0]}`.replace(
+														/.(jpe?g|png)$/i,
+														".webp"
+													)}
+													type="image/webp"
+												/>
+												<img
+													alt={
+														localizations[
+															artworkItem.id
+														].title
+													}
+													src={`/images/artwork/120/${artworkItem.images[0]}`}
+												/>
+											</picture>
+										</ImageGridLink>
+									</a>
+								</Link>
+							</li>
+						))}
+					</ImageGrid>
+				}
+				slotContent={
+					<>
+						<h1>{title}</h1>
+						<div>
+							{localizations.overview.text}
+							<br />
+							{page_number}/{pageCount}
+						</div>
+					</>
+				}
+				slotNav={
+					<>
+						{pageNumber > 1 ? (
+							<Link
+								href={`/${localizations.artwork.slug}/${slug}/${
+									localizations.page.slug
+								}/${pageNumber - 1}`}
+								locale={locale}
+							>
+								<a
+									aria-label={`${
+										localizations.previousPage.text
+									}: ${pageNumber - 1}`}
+								>
+									<SvgIcon
+										aria-hidden="true"
+										viewBox="0 0 24 24"
+									>
+										<path
+											fill="currentColor"
+											d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z"
+										/>
+									</SvgIcon>
+								</a>
+							</Link>
+						) : (
+							<span />
+						)}
+						{pageCount > 1 && pageNumber < pageCount && (
+							<Link
+								href={`/${localizations.artwork.slug}/${slug}/${
+									localizations.page.slug
+								}/${pageNumber + 1}`}
+								locale={locale}
+							>
+								<a
+									aria-label={`${
+										localizations.nextPage.text
+									}: ${pageNumber + 1}`}
+								>
+									<SvgIcon
+										aria-hidden="true"
+										viewBox="0 0 24 24"
+									>
+										<path
+											fill="currentColor"
+											d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+										/>
+									</SvgIcon>
+								</a>
+							</Link>
+						)}
+					</>
+				}
+			/>
 		</FrameLayout>
 	);
 };
