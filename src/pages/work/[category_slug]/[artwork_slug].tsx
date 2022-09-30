@@ -73,6 +73,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	};
 };
 
+function getArtworkSize(size): string {
+	return `${size.height.value} ${
+		size.height.unit !== size.width.unit ? ` ${size.height.unit}` : ""
+	} x ${size.width.value} ${size.width.unit}`;
+}
+
 export default function ArtworkPage({
 	artworkId,
 	image,
@@ -92,7 +98,9 @@ export default function ArtworkPage({
 		defaultLocale,
 		query: { category_slug },
 	} = useRouter();
-	const artworkName = localizations[artworkId].title;
+	const artwork = localizations[artworkId];
+	const artworkName = artwork.title;
+	const artworkSize = artwork.size ? getArtworkSize(artwork.size) : undefined;
 
 	return (
 		<FrameLayout>
@@ -122,7 +130,10 @@ export default function ArtworkPage({
 				}
 				slotContent={
 					<>
-						<h1>{artworkName}</h1>
+						<div>
+							<h1>{artworkName}</h1>
+							<div>{artworkSize}</div>
+						</div>
 						<div>
 							{imageIndex + 1}/{imageCount}
 						</div>
