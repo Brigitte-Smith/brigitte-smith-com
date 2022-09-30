@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import artworkData from "../../../../dataArtwork.json";
 import localizations from "../../../../locales/en.json";
 import { ArtworkColumns } from "../../../components/ArtworkColumns";
+import { ArtworkImage } from "../../../components/ArtworkImage";
 import { MetaTitle } from "../../../components/MetaTitle";
 import { SvgIcon } from "../../../components/SvgIcon";
 import { FrameLayout } from "../../../layouts/FrameLayout";
@@ -120,7 +121,7 @@ export default function ArtworkPage({
 									)}
 									type="image/webp"
 								/>
-								<img
+								<ArtworkImage
 									alt={artworkName}
 									src={`/images/artwork/380/${image}`}
 								/>
@@ -141,7 +142,7 @@ export default function ArtworkPage({
 				}
 				slotNav={
 					<>
-						{previousArtworkId && (
+						{previousArtworkId ? (
 							<Link
 								href={`/${localizations.artwork.slug}/${category_slug}/${localizations[previousArtworkId].slug}`}
 							>
@@ -159,6 +160,8 @@ export default function ArtworkPage({
 									</SvgIcon>
 								</a>
 							</Link>
+						) : (
+							<span />
 						)}
 						{nextArtworkId && (
 							<Link
