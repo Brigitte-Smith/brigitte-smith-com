@@ -1,6 +1,6 @@
 ---
 title: "Ausstellungen"
-slug: "ausstellungen"
+slug: ausstellungen
 ---
 
 ## 1971

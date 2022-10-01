@@ -1,6 +1,6 @@
 ---
 title: "Biography"
-slug: "biography"
+slug: biography
 ---
 
 ## Birthday

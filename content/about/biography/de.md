@@ -1,6 +1,6 @@
 ---
 title: "Lebenslauf"
-slug: "lebenslauf"
+slug: lebenslauf
 ---
 
 ## Geburtsdatum
