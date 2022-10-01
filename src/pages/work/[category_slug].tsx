@@ -3,38 +3,23 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
-import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
-import localizations from "../../../locales/en.json";
 import { MetaTitle } from "../../components/MetaTitle";
 import { useLocalization } from "../../context/LocalizationContext";
 import { FrameLayout } from "../../layouts/FrameLayout";
+import type { Locale } from "../../lib/common";
+import { getStaticWorkPaths, getStaticWorkProps } from "../../lib/workCategory";
+
+const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = directoryMapArtwork.map(({ id }) => {
-		return {
-			params: {
-				category_slug: localizations[id].slug,
-			},
-			locale: "en",
-		};
-	});
-
-	return {
-		paths,
-		fallback: false,
-	};
+	return getStaticWorkPaths(LOCALE);
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const [categoryLocalizationId] = Object.entries(localizations).find(
-		([, localization]) => localization?.slug === params.category_slug
-	);
-
-	return {
-		props: {
-			categoryLocalizationId,
-		},
-	};
+	return getStaticWorkProps({
+		locale: LOCALE,
+		category_slug: params.category_slug,
+	});
 };
 
 const CategoryPage: NextPage = ({

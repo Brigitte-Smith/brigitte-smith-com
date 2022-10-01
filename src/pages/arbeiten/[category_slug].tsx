@@ -1,36 +1,20 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
-import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
-import localizations from "../../../locales/de.json";
-
+import type { Locale } from "../../lib/common";
+import { getStaticWorkPaths, getStaticWorkProps } from "../../lib/workCategory";
 import CategoryPage from "../work/[category_slug]";
 
-export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = directoryMapArtwork.map(({ id }) => {
-		return {
-			params: {
-				category_slug: localizations[id].slug,
-			},
-			locale: "de",
-		};
-	});
+const LOCALE: Locale = "en";
 
-	return {
-		paths,
-		fallback: false,
-	};
+export const getStaticPaths: GetStaticPaths = async (props) => {
+	return getStaticWorkPaths(LOCALE);
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const [categoryLocalizationId] = Object.entries(localizations).find(
-		([, localization]) => localization?.slug === params.category_slug
-	);
-
-	return {
-		props: {
-			categoryLocalizationId,
-		},
-	};
+	return getStaticWorkProps({
+		locale: LOCALE,
+		category_slug: params.category_slug,
+	});
 };
 
 export default CategoryPage;

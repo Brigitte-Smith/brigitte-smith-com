@@ -1,9 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { getStaticAboutPaths, getStaticAboutProps } from "../../lib/about";
+import type { Locale } from "../../lib/common";
 import AboutCategoryPage from "../../pages/about/[about_slug]";
 
-const LOCALE = "de";
+const LOCALE: Locale = "de";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
 	return getStaticAboutPaths(LOCALE);

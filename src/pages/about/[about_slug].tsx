@@ -4,10 +4,10 @@ import ReactMarkdown from "react-markdown";
 import { MetaTitle } from "../../components/MetaTitle";
 import { useLocalization } from "../../context/LocalizationContext";
 import { FrameLayout } from "../../layouts/FrameLayout";
-
 import { getStaticAboutPaths, getStaticAboutProps } from "../../lib/about";
+import type { Locale } from "../../lib/common";
 
-const LOCALE = "en";
+const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
 	return getStaticAboutPaths(LOCALE);
