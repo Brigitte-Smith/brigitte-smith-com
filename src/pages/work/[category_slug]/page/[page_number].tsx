@@ -2,63 +2,30 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import directoryMapArtwork from "../../../../../data/directoryMapArtwork.json";
-import localizations from "../../../../../locales/en.json";
 import { ArtworkColumns } from "../../../../components/ArtworkColumns";
 import { ImageGrid, ImageGridLink } from "../../../../components/ImageGrid";
 import { MetaTitle } from "../../../../components/MetaTitle";
 import { SvgIcon } from "../../../../components/SvgIcon";
 import { useLocalization } from "../../../../context/LocalizationContext";
 import { FrameLayout } from "../../../../layouts/FrameLayout";
+import {
+	getStaticArtworkCategoryPagePaths,
+	getStaticArtworkCategoryPageProps,
+} from "../../../../lib/artworkCategoryPage";
+import type { Locale } from "../../../../lib/common";
 
-const ARTWORK_PER_PAGE = 9;
+const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = directoryMapArtwork
-		.map(({ id, artwork }) => {
-			const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
-			return Array.apply(null, { length: pageCount }).map((i, index) => {
-				return {
-					params: {
-						category_slug: localizations[id].slug,
-						page_number: `${index + 1}`,
-					},
-					locale: "en",
-				};
-			});
-		})
-		.flat();
-
-	return {
-		paths,
-		fallback: false,
-	};
+	return getStaticArtworkCategoryPagePaths(LOCALE);
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { page_number, category_slug } = params;
-
-	const [categoryLocalizationId] = Object.entries(localizations).find(
-		([, localization]) => localization?.slug === category_slug
-	);
-
-	let { artwork } = directoryMapArtwork.find(
-		({ id }) => id === categoryLocalizationId
-	);
-	const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
-	artwork = artwork.filter(
-		(artwork, index) =>
-			index >= (page_number - 1) * ARTWORK_PER_PAGE &&
-			index < page_number * ARTWORK_PER_PAGE
-	);
-
-	return {
-		props: {
-			categoryLocalizationId,
-			artwork,
-			pageCount,
-		},
-	};
+	return getStaticArtworkCategoryPageProps({
+		locale: LOCALE,
+		category_slug: params.category_slug,
+		page_number: parseInt(params.page_number),
+	});
 };
 
 const CategoryNumberedPage: NextPage = ({

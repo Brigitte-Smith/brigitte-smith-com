@@ -2,7 +2,7 @@ import directoryMapArtwork from "../../data/directoryMapArtwork.json";
 import { getLocalizations } from "./common";
 import type { Locale } from "./common";
 
-export function getStaticWorkPaths(locale: Locale) {
+export function getStaticArtworkPaths(locale: Locale) {
 	const localizations = getLocalizations(locale);
 
 	const paths = directoryMapArtwork.map(({ id }) => {
@@ -20,7 +20,7 @@ export function getStaticWorkPaths(locale: Locale) {
 	};
 }
 
-export function getStaticWorkProps({
+export function getStaticArtworkProps({
 	locale,
 	category_slug,
 }: {

@@ -7,16 +7,19 @@ import { MetaTitle } from "../../components/MetaTitle";
 import { useLocalization } from "../../context/LocalizationContext";
 import { FrameLayout } from "../../layouts/FrameLayout";
 import type { Locale } from "../../lib/common";
-import { getStaticWorkPaths, getStaticWorkProps } from "../../lib/workCategory";
+import {
+	getStaticArtworkPaths,
+	getStaticArtworkProps,
+} from "../../lib/artwork";
 
 const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	return getStaticWorkPaths(LOCALE);
+	return getStaticArtworkPaths(LOCALE);
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	return getStaticWorkProps({
+	return getStaticArtworkProps({
 		locale: LOCALE,
 		category_slug: params.category_slug,
 	});
