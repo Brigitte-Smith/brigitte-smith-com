@@ -1,11 +1,11 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import artworkData from "../../../../dataArtwork.json";
+import directoryMapArtwork from "../../../../data/directoryMapArtwork.json";
 import localizations from "../../../../locales/de.json";
 import ArtworkPage from "../../work/[category_slug]/[artwork_slug]";
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths = artworkData
+	const paths = directoryMapArtwork
 		.map(({ id: categoryId, artwork }) => {
 			return artwork.map(({ id }) => {
 				return {
@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		([, localization]) => localization?.slug === category_slug
 	);
 
-	const { artwork: categoryArtwork } = artworkData.find(
+	const { artwork: categoryArtwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
 

@@ -1,13 +1,13 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
-import artworkData from "../../../../../dataArtwork.json";
+import directoryMapArtwork from "../../../../../data/directoryMapArtwork.json";
 import localizations from "../../../../../locales/de.json";
 import CategoryNumberedPage from "../../../work/[category_slug]/page/[page_number]";
 
 const ARTWORK_PER_PAGE = 9;
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = artworkData
+	const paths = directoryMapArtwork
 		.map(({ id, artwork }) => {
 			const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
 			return Array.apply(null, { length: pageCount }).map((i, index) => {
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		([, localization]) => localization?.slug === category_slug
 	);
 
-	let { artwork } = artworkData.find(
+	let { artwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
 	const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);

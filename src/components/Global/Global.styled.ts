@@ -35,7 +35,12 @@ img {
 
 h1 {
   font-size: inherit;
-margin-top: 0;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: inherit;
+  margin-top: 0;
 }
 
 p {

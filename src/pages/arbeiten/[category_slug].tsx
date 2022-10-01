@@ -1,12 +1,12 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import artworkData from "../../../dataArtwork.json";
+import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
 import localizations from "../../../locales/de.json";
 
 import CategoryPage from "../work/[category_slug]";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = artworkData.map(({ id }) => {
+	const paths = directoryMapArtwork.map(({ id }) => {
 		return {
 			params: {
 				category_slug: localizations[id].slug,

@@ -20,7 +20,7 @@ export const FrameLayout_Footer = styled.footer`
 	padding: 10px 0;
 `;
 
-export const FrameLayout_Body = styled.main`
+export const FrameLayout_Body = styled.div`
 	background: hsl(0deg 0% 100%);
 	display: grid;
 	gap: 10px;
@@ -42,12 +42,12 @@ export const FrameLayout_PanelHeadline = styled.h2`
 	text-transform: uppercase;
 `;
 
-export const FrameLayout_BodyPanels = styled.main`
+export const FrameLayout_BodyPanels = styled.div`
 	display: grid;
 	gap: 10px;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto 1fr;
 `;
 
-export const FrameLayout_MainContentPanel = styled.div`
+export const FrameLayout_MainContentPanel = styled.main`
 	min-height: 380px;
 `;

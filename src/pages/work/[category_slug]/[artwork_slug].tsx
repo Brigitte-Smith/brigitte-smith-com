@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import artworkData from "../../../../dataArtwork.json";
+import directoryMapArtwork from "../../../../data/directoryMapArtwork.json";
 import localizations from "../../../../locales/en.json";
 import { ArtworkColumns } from "../../../components/ArtworkColumns";
 import { ArtworkImage } from "../../../components/ArtworkImage";
@@ -11,7 +11,7 @@ import { SvgIcon } from "../../../components/SvgIcon";
 import { FrameLayout } from "../../../layouts/FrameLayout";
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-	const paths = artworkData
+	const paths = directoryMapArtwork
 		.map(({ id: categoryId, artwork }) => {
 			return artwork.map(({ id }) => {
 				return {
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		([, localization]) => localization?.slug === category_slug
 	);
 
-	const { artwork: categoryArtwork } = artworkData.find(
+	const { artwork: categoryArtwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
 

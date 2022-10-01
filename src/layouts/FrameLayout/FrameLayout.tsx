@@ -2,8 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
-import artworkData from "../../../dataArtwork.json";
-import aboutData from "../../../dataAbout.json";
+import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
+import directoryMapAbout from "../../../data/directoryMapAbout.json";
 
 import { SvgIcon } from "../../components/SvgIcon";
 import { useLocalization } from "../../context/LocalizationContext";
@@ -53,7 +53,7 @@ export function FrameLayout({
 							{localization.about.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
-							links={aboutData.map(({ id }) => (
+							links={directoryMapAbout.map(({ id }) => (
 								<Link
 									key={`about-category_${id}`}
 									href={`/${localization.about.slug}/${localization[id].slug}`}
@@ -69,7 +69,7 @@ export function FrameLayout({
 							{localization.artwork.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
-							links={artworkData.map(({ id }) => (
+							links={directoryMapArtwork.map(({ id }) => (
 								<Link
 									key={`artwork-category_${id}`}
 									href={`/${

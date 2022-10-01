@@ -3,17 +3,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 
-import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
+import directoryMapAbout from "../../../data/directoryMapAbout.json";
 import localizations from "../../../locales/en.json";
 import { MetaTitle } from "../../components/MetaTitle";
 import { useLocalization } from "../../context/LocalizationContext";
 import { FrameLayout } from "../../layouts/FrameLayout";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = directoryMapArtwork.map(({ id }) => {
+	const paths = directoryMapAbout.map(({ id }) => {
 		return {
 			params: {
-				category_slug: localizations[id].slug,
+				about_slug: localizations[id].slug,
 			},
 			locale: "en",
 		};
@@ -26,38 +26,32 @@ export const getStaticPaths: GetStaticPaths = async (props) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const [categoryLocalizationId] = Object.entries(localizations).find(
-		([, localization]) => localization?.slug === params.category_slug
+	const [aboutCategoryLocalizationId] = Object.entries(localizations).find(
+		([, localization]) => localization?.slug === params.about_slug
 	);
 
 	return {
 		props: {
-			categoryLocalizationId,
+			aboutCategoryLocalizationId,
 		},
 	};
 };
 
-const CategoryPage: NextPage = ({
-	categoryLocalizationId,
+const AboutCategoryPage: NextPage = ({
+	aboutCategoryLocalizationId,
 }: {
-	categoryLocalizationId: string;
+	aboutCategoryLocalizationId: string;
 }) => {
 	const { locale } = useRouter();
 	const localizations = useLocalization();
-	const { title, content, slug } = localizations[categoryLocalizationId];
+	const { title, content, slug } = localizations[aboutCategoryLocalizationId];
 
 	return (
 		<FrameLayout>
 			<MetaTitle suffix={title} />
 			<ReactMarkdown>{content}</ReactMarkdown>
-			<Link
-				href={`/${localizations.artwork.slug}/${slug}/${localizations.page.slug}/1`}
-				locale={locale}
-			>
-				<a>{localizations.page.text} 1</a>
-			</Link>
 		</FrameLayout>
 	);
 };
 
-export default CategoryPage;
+export default AboutCategoryPage;

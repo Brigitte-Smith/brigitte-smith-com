@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import artworkData from "../../../../../dataArtwork.json";
+import directoryMapArtwork from "../../../../../data/directoryMapArtwork.json";
 import localizations from "../../../../../locales/en.json";
 import { ArtworkColumns } from "../../../../components/ArtworkColumns";
 import { ImageGrid, ImageGridLink } from "../../../../components/ImageGrid";
@@ -14,7 +14,7 @@ import { FrameLayout } from "../../../../layouts/FrameLayout";
 const ARTWORK_PER_PAGE = 9;
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-	const paths = artworkData
+	const paths = directoryMapArtwork
 		.map(({ id, artwork }) => {
 			const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
 			return Array.apply(null, { length: pageCount }).map((i, index) => {
@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		([, localization]) => localization?.slug === category_slug
 	);
 
-	let { artwork } = artworkData.find(
+	let { artwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
 	const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
