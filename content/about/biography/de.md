@@ -5,7 +5,7 @@ slug: lebenslauf
 
 ## Geburtsdatum
 
-26. Juni 1938
+26\. Juni 1938
 
 ## Ausbildung
 

@@ -1,6 +1,6 @@
 import type { GetStaticProps } from "next";
 
-import BiographyPage from "../about/biography";
+import ExhibitionsPage from "../about/exhibitions";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	return {
@@ -8,4 +8,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	};
 };
 
-export default BiographyPage;
+export default ExhibitionsPage;
