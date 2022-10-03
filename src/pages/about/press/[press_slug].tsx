@@ -1,6 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import ReactMarkdown from "react-markdown";
 import { MetaTitle } from "../../../components/MetaTitle";
+import { PressList } from "../../../components/PressList";
 
 import { useLocalization } from "../../../context/LocalizationContext";
 import { FrameLayout } from "../../../layouts/FrameLayout";
@@ -22,8 +23,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const PressPage: NextPage = ({ pressLocalizationId }) => {
 	const localizations = useLocalization();
-
-	console.log(pressLocalizationId);
 
 	return (
 		<FrameLayout>

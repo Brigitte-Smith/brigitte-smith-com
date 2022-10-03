@@ -1,41 +1,32 @@
 import type { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
 
 import directoryMapAbout from "../../../../data/directoryMapAbout.json";
 import { MetaTitle } from "../../../components/MetaTitle";
+import { PressList } from "../../../components/PressList";
 import { useLocalization } from "../../../context/LocalizationContext";
 import { FrameLayout } from "../../../layouts/FrameLayout";
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+	let { children } = directoryMapAbout.find(({ id }) => id === "about_press");
+
 	return {
-		props: {},
+		props: {
+			press: children,
+		},
 	};
 };
 
-const PressIndexPage: NextPage = () => {
+const PressIndexPage: NextPage = ({}) => {
 	const localizations = useLocalization();
-	const { children } = directoryMapAbout.find(
+	const { children: press } = directoryMapAbout.find(
 		({ id }) => id === "about_press"
 	);
-	console.log({ children, localizations });
+
 	return (
 		<FrameLayout>
 			<MetaTitle suffix={localizations.about_press.title} />
 
-			<ul>
-				{children.map((id) => (
-					<li key={id}>
-						<div>
-							<Link
-								href={`/${localizations.about.slug}/${localizations.about_press.slug}/${localizations[id].slug}`}
-							>
-								{localizations[id].title}
-							</Link>
-						</div>
-						<div>{localizations[id].summary}</div>
-					</li>
-				))}
-			</ul>
+			<PressList press={press} />
 		</FrameLayout>
 	);
 };
