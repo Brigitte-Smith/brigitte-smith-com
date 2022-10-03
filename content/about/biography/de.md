@@ -9,8 +9,8 @@ slug: lebenslauf
 
 ## Ausbildung
 
-Werkkunstschule Wiesbaden
-Akademie für Graphisches Gewerbe, München
+Werkkunstschule Wiesbaden\
+Akademie für Graphisches Gewerbe, München\
 Academy of Fine Arts, Montreal, Canada
 
 ## Auslandsaufenthalte
@@ -19,11 +19,11 @@ Academy of Fine Arts, Montreal, Canada
 
 ## Arbeiten
 
-Illustratorin von Kinderbüchern, Malerin und Designerin
-Bildgeschichten für das Bayerische Fernsehen
-Freie Arbeiten Objekte
-Arbeiten in Öl, Collagen, Aquarelle, Zeichnungen, Radierungen
-Teilnahme an Jahresausstellungen im Haus der Kunst
+Illustratorin von Kinderbüchern, Malerin und Designerin\
+Bildgeschichten für das Bayerische Fernsehen\
+Freie Arbeiten Objekte\
+Arbeiten in Öl, Collagen, Aquarelle, Zeichnungen, Radierungen\
+Teilnahme an Jahresausstellungen im Haus der Kunst\
 Dozentin am College of Arts and Crafts, Oakland, California
 
 ## Arbeiten

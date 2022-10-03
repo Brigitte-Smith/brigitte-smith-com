@@ -14,6 +14,7 @@ body {
     color: hsl(0deg 0% 0%);
     font-family: Arial, Open-Sans, Helvetica, Sans-Serif;
     font-size: 13px;
+    line-height: 1.4;
     letter-spacing: 1px;
     margin: 0;
     padding: 0;
