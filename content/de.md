@@ -13,4 +13,8 @@ overview:
   text: "Übersicht"
 toArtwork:
   text: "Zu den Kunstwerken"
+inGerman:
+  text: "auf Deutsch"
+inEnglish:
+  text: "auf Englisch"
 ---

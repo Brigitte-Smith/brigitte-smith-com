@@ -19,3 +19,16 @@ export const PressList_Title = styled.span`
 export const PressList_Summary = styled.div`
 	padding-left: 3rem;
 `;
+
+export const PressList_Language = styled.span`
+	display: inline-block;
+	margin-left: 1ch;
+
+	&::before {
+		content: "(";
+	}
+
+	&::after {
+		content: ")";
+	}
+`;

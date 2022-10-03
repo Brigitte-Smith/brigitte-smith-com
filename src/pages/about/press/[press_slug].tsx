@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
 import { MetaTitle } from "../../../components/MetaTitle";
-import { PressList } from "../../../components/PressList";
 
 import { useLocalization } from "../../../context/LocalizationContext";
 import { FrameLayout } from "../../../layouts/FrameLayout";
@@ -23,13 +23,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const PressPage: NextPage = ({ pressLocalizationId }) => {
 	const localizations = useLocalization();
+	const { locale } = useRouter();
 
 	return (
 		<FrameLayout>
-			<MetaTitle suffix={"title"} />
-			<ReactMarkdown>
-				{localizations[pressLocalizationId].content}
-			</ReactMarkdown>
+			<MetaTitle suffix={localizations[pressLocalizationId].title} />
+			<div
+				lang={
+					localizations[pressLocalizationId]?.language !== locale &&
+					localizations[pressLocalizationId]?.language
+				}
+			>
+				<ReactMarkdown>
+					{localizations[pressLocalizationId].content}
+				</ReactMarkdown>
+			</div>
 		</FrameLayout>
 	);
 };

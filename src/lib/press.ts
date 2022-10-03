@@ -7,7 +7,7 @@ export function getStaticPressPaths(locale: Locale) {
 
 	const paths = directoryMapAbout
 		.find(({ id }) => id === "about_press")
-		.children.map((id) => {
+		.children.map(({ id }) => {
 			return {
 				params: {
 					press_slug: localizations[id].slug,
