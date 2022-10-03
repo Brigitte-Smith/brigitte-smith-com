@@ -7,4 +7,14 @@ export const NavigationLinkList = styled.ul`
 	list-style: none;
 	margin: 0;
 	padding-left: 12px;
+
+	a {
+		color: inherit;
+
+		&:focus,
+		&:hover {
+			font-weight: bold;
+			text-decoration: none;
+		}
+	}
 `;

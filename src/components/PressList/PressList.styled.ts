@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const PressList = styled.ul`
@@ -10,7 +11,8 @@ export const PressList = styled.ul`
 	}
 `;
 
-export const PressList_Title = styled.div`
+export const PressList_Title = styled.span`
+	color: hsl(0 0% 0%);
 	font-weight: bold;
 `;
 

@@ -11,6 +11,7 @@ import {
 	getStaticArtworkPaths,
 	getStaticArtworkProps,
 } from "../../lib/artwork";
+import { SvgIcon } from "../../components/SvgIcon";
 
 const LOCALE: Locale = "en";
 
@@ -42,7 +43,15 @@ const CategoryPage: NextPage = ({
 				href={`/${localizations.artwork.slug}/${slug}/${localizations.page.slug}/1`}
 				locale={locale}
 			>
-				<a>{localizations.page.text} 1</a>
+				<a>
+					{localizations.toArtwork.text}
+					<SvgIcon aria-hidden="true">
+						<path
+							fill="currentColor"
+							d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+						/>
+					</SvgIcon>
+				</a>
 			</Link>
 		</FrameLayout>
 	);

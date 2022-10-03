@@ -11,4 +11,6 @@ previousPage:
   text: "vorige Seite"
 overview:
   text: "Übersicht"
+toArtwork:
+  text: "Zu den Kunstwerken"
 ---

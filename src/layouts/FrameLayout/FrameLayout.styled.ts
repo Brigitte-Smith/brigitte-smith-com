@@ -12,12 +12,32 @@ export const FrameLayout_Header = styled.header`
 	justify-content: space-between;
 	padding: 10px 0;
 	text-transform: uppercase;
+
+	a {
+		color: inherit;
+
+		&:focus,
+		&:hover {
+			font-weight: bold;
+			text-decoration: none;
+		}
+	}
 `;
 
 export const FrameLayout_Footer = styled.footer`
 	display: flex;
 	justify-content: space-between;
 	padding: 10px 0;
+
+	a {
+		color: inherit;
+
+		&:focus,
+		&:hover {
+			font-weight: bold;
+			text-decoration: none;
+		}
+	}
 `;
 
 export const FrameLayout_Body = styled.div`

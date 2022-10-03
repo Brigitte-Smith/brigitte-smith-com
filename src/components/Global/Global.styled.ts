@@ -21,11 +21,11 @@ body {
   }
 
 a {
-    color: hsl(0deg 0% 0%);
     text-decoration: none;
 
+    &:focus,
     &:hover {
-        font-weight: bold;
+      text-decoration: underline;
     }
 }
 

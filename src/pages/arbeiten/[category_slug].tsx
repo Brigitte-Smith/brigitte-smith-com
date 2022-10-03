@@ -7,7 +7,7 @@ import {
 } from "../../lib/artwork";
 import CategoryPage from "../work/[category_slug]";
 
-const LOCALE: Locale = "en";
+const LOCALE: Locale = "de";
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
 	return getStaticArtworkPaths(LOCALE);
