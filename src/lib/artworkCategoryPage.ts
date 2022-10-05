@@ -43,9 +43,25 @@ export function getStaticArtworkCategoryPageProps({
 		([, localization]) => localization?.slug === category_slug
 	);
 
+	const sortByField = localizations[categoryLocalizationId].sortBy;
+
 	let { artwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
+
+	artwork = artwork.map((artworkObject) => {
+		return {
+			...artworkObject,
+			date: localizations[artworkObject.id].date ?? 0,
+		};
+	});
+
+	if (sortByField === "date") {
+		artwork = artwork.sort((a, b) =>
+			a[sortByField] < b[sortByField] ? 1 : -1
+		);
+	}
+
 	const pageCount = Math.ceil(artwork.length / ARTWORK_PER_PAGE);
 	artwork = artwork.filter(
 		(artwork, index) =>

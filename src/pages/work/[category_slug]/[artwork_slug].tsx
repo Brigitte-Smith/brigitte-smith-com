@@ -37,10 +37,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const [categoryLocalizationId] = Object.entries(localizations).find(
 		([, localization]) => localization?.slug === category_slug
 	);
+	const sortByField = localizations[categoryLocalizationId].sortBy;
 
-	const { artwork: categoryArtwork } = directoryMapArtwork.find(
+	let { artwork: categoryArtwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId
 	);
+
+	categoryArtwork = categoryArtwork.map((artworkObject) => {
+		return {
+			...artworkObject,
+			date: localizations[artworkObject.id].date ?? 0,
+		};
+	});
+
+	if (sortByField === "date") {
+		categoryArtwork = categoryArtwork.sort((a, b) =>
+			a[sortByField] < b[sortByField] ? 1 : -1
+		);
+	}
 
 	const [artworkLocalizationId] = Object.entries(localizations).find(
 		([, localization]) => localization?.slug === artwork_slug
@@ -101,8 +115,11 @@ export default function ArtworkPage({
 	} = useRouter();
 	const artwork = localizations[artworkId];
 	const artworkName = artwork.title;
+	const artworkDate = artwork.date
+		? new Date(artwork.date.toString())
+		: undefined;
 	const artworkSize = artwork.size ? getArtworkSize(artwork.size) : undefined;
-
+	console.log(artwork.date, artworkDate);
 	return (
 		<FrameLayout>
 			<MetaTitle suffix={artworkName} />
@@ -133,7 +150,12 @@ export default function ArtworkPage({
 					<>
 						<div>
 							<h1>{artworkName}</h1>
-							<div>{artworkSize}</div>
+							{artworkSize && <div>{artworkSize}</div>}
+							{artworkDate && (
+								<div>
+									{<time>{artworkDate.getFullYear()}</time>}
+								</div>
+							)}
 						</div>
 						<div>
 							{imageIndex + 1}/{imageCount}
