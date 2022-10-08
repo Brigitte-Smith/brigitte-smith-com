@@ -19,7 +19,7 @@
     "start": "next start",
     "lint": "next lint",
     "convert": "node index.mjs",
-    "transformContent": "node ./lib/createDataFile.mjs",
+    "transformContent": "node ./lib/createDirectoryMapAbout.mjs && node ./lib/createDirectoryMapArtwork.mjs && node ./lib/createLocaleFiles.mjs",
     "transformImages": "node ./lib/copyImagesToPublic.mjs"
   },
   "dependencies": {
