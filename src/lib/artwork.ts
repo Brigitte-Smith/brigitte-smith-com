@@ -10,7 +10,6 @@ export function getStaticArtworkPaths(locale: Locale) {
 			params: {
 				category_slug: localizations[id].slug,
 			},
-			locale,
 		};
 	});
 

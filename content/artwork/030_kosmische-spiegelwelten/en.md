@@ -1,6 +1,7 @@
 ---
 title: "Cosmic Reflections"
 slug: cosmic-reflections
+contentLocale: de
 ---
 
 # Kosmische Spiegelwelten

@@ -16,7 +16,6 @@ export function getStaticArtworkCategoryPagePaths(locale: Locale) {
 						category_slug: localizations[id].slug,
 						page_number: `${index + 1}`,
 					},
-					locale,
 				};
 			});
 		})
@@ -43,7 +42,7 @@ export function getStaticArtworkCategoryPageProps({
 		([, localization]) => localization?.slug === category_slug
 	);
 
-	const sortByField = localizations[categoryLocalizationId].sortBy;
+	const sortByField = localizations[categoryLocalizationId].sortField;
 
 	let { artwork } = directoryMapArtwork.find(
 		({ id }) => id === categoryLocalizationId

@@ -12,7 +12,6 @@ export function getStaticPressPaths(locale: Locale) {
 				params: {
 					press_slug: localizations[id].slug,
 				},
-				locale,
 			};
 		});
 

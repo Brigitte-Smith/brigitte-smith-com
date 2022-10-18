@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
 import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
@@ -23,20 +22,17 @@ export function FrameLayout({
 }: {
 	children: ReactNode;
 }): JSX.Element {
-	const { locale } = useRouter();
-	const localization = useLocalization();
+	const { locale, localizations } = useLocalization();
 
 	return (
 		<S.FrameLayout>
 			<S.FrameLayout_Header>
-				<Link href="/home/" locale={locale}>
-					Brigitte Smith
-				</Link>
+				<Link href={`/${locale}`}>Brigitte Smith</Link>
 				<a
 					className="link--external"
 					href="https://www.amazon.de/Brigitte-Smith-Art/dp/B01N2NA0DJ"
 				>
-					{localization.channels.amazon.text}
+					{localizations.channels.amazon.text}
 					<SvgIcon aria-hidden="true">
 						<path
 							fill="currentColor"
@@ -50,37 +46,35 @@ export function FrameLayout({
 				<S.FrameLayout_BodyPanels>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localization.about.title}
+							{localizations.about.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
 							links={directoryMapAbout.map(({ id }) => (
 								<Link
 									key={`about-category_${id}`}
-									href={`/${localization.about.slug}/${localization[id].slug}`}
-									locale={locale}
+									href={`/${locale}/${localizations.about.slug}/${localizations[id].slug}`}
 								>
-									{localization[id].title}
+									{localizations[id].title}
 								</Link>
 							))}
 						/>
 					</S.FrameLayout_Panel>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localization.artwork.title}
+							{localizations.artwork.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
 							links={directoryMapArtwork.map(({ id }) => (
 								<Link
 									key={`artwork-category_${id}`}
-									href={`/${
-										localization.artwork.slug
+									href={`/${locale}/${
+										localizations.artwork.slug
 									}/${getArtworkCategoryHref(
-										localization[id],
-										localization.page.slug
+										localizations[id],
+										localizations.page.slug
 									)}`}
-									locale={locale}
 								>
-									{localization[id].title}
+									{localizations[id].title}
 								</Link>
 							))}
 						/>
@@ -92,22 +86,22 @@ export function FrameLayout({
 			</S.FrameLayout_Body>
 
 			<S.FrameLayout_Footer>
-				<Link href={localization.imprint.slug} locale={locale}>
-					{localization.imprint.title}
+				<Link href={`/${locale}/${localizations.imprint.slug}`}>
+					{localizations.imprint.title}
 				</Link>
 
 				{locale === "en" ? (
-					<Link href="/home" locale="de">
-						Deutsch
+					<Link href={`/de`}>
+						<a hrefLang="de">Deutsch</a>
 					</Link>
 				) : (
-					<Link href="/home" locale="en">
-						English
+					<Link href={`/en`}>
+						<a hrefLang="en">English</a>
 					</Link>
 				)}
 
-				<Link href={localization.contact.slug} locale={locale}>
-					{localization.contact.title}
+				<Link href={`/${locale}/${localizations.contact.slug}`}>
+					{localizations.contact.title}
 				</Link>
 			</S.FrameLayout_Footer>
 		</S.FrameLayout>

@@ -1,19 +1,18 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+
 import { useLocalization } from "../../context/LocalizationContext";
 import * as S from "./PressList.styled";
 
 export function PressList({ press }): JSX.Element {
-	const localizations = useLocalization();
-	const { locale } = useRouter();
-	console.log({ press });
+	const { locale, localizations } = useLocalization();
+
 	return (
 		<S.PressList>
 			{press.map(({ id }) => (
 				<li key={id}>
 					<div>
 						<Link
-							href={`/${localizations.about.slug}/${localizations.about_press.slug}/${localizations[id].slug}`}
+							href={`/${locale}/${localizations.about.slug}/${localizations.about_press.slug}/${localizations[id].slug}`}
 						>
 							<a
 								hrefLang={

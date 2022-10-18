@@ -1,5 +1,6 @@
 ---
 title: "Tabelbilder"
 slug: tafelbilder
-sortBy: date
+sortField: date
+sortDirection: desc
 ---

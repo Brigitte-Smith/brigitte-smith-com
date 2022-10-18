@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<title>Brigitte Smith</title>
 			</Head>
 			<GlobalStyle />
-			<Component {...pageProps} />{" "}
+			<Component {...pageProps} />
 		</>
 	);
 }

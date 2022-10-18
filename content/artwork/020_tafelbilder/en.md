@@ -1,5 +1,6 @@
 ---
 title: "Tableaus"
 slug: tableaus
-sortBy: date
+sortField: date
+sortDirection: desc
 ---

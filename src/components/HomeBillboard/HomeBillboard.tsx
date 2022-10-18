@@ -19,11 +19,11 @@ export function HomeBillboard(): JSX.Element {
 				</S.HomeBillboard_Headline>
 
 				<S.HomeBillboard_Links>
-					<Link href="/home/" locale="en">
+					<Link href="/en/">
 						<a hrefLang="en">English</a>
 					</Link>
 					<S.HomeBillboard_Divider />
-					<Link href="/home/" locale="de">
+					<Link href="/de/">
 						<a hrefLang="de">Deutsch</a>
 					</Link>
 				</S.HomeBillboard_Links>
