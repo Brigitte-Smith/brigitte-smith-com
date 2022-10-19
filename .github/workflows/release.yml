@@ -40,10 +40,10 @@ jobs:
       - name: Upload to host via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: ${{ secrets.WEBGO_SFTP_HOST }}
-          port: 21
-          username: ${{ secrets.WEBGO_SFTP_USERNAME }}
-          password: ${{ secrets.WEBGO_SFTP_PASSWORD }}
+          server: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftp
           local-dir: /out/
           server-dir: /home/www/de.absolutholz.brigitte-smith
