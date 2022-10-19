@@ -1,12 +1,13 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { ParsedUrlQuery } from "querystring";
 
 import { ArtworkColumns } from "../../../../../components/ArtworkColumns";
 import { ImageGrid, ImageGridLink } from "../../../../../components/ImageGrid";
 import { MetaTitle } from "../../../../../components/MetaTitle";
 import { SvgIcon } from "../../../../../components/SvgIcon";
 import { useLocalization } from "../../../../../context/LocalizationContext";
+import { Artwork, ArtworkCategory } from "../../../../../data.annotations";
 import { FrameLayout } from "../../../../../layouts/FrameLayout";
 import {
 	getStaticArtworkCategoryPagePaths,
@@ -20,34 +21,41 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	return getStaticArtworkCategoryPagePaths(LOCALE);
 };
 
+export interface ArtworkCategoryPageParams extends ParsedUrlQuery {
+	category_slug: string;
+	page_number: string;
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+	const { category_slug, page_number } = params as ArtworkCategoryPageParams;
+
 	return getStaticArtworkCategoryPageProps({
 		locale: LOCALE,
-		category_slug: params.category_slug,
-		page_number: parseInt(params.page_number),
+		category_slug: category_slug,
+		page_number: parseInt(page_number),
 	});
 };
 
 const CategoryNumberedPage: NextPage = ({
-	categoryLocalizationId,
+	category,
 	artwork,
+	pageNumber,
 	pageCount,
 }: {
-	categoryLocalizationId: string;
-	artwork: { id: string; images: { original: string; webp: string }[] };
+	category: ArtworkCategory;
+	artwork: Artwork[];
+	pageNumber: number;
 	pageCount: number;
 }) => {
-	const {
-		query: { page_number },
-	} = useRouter();
 	const { locale, localizations } = useLocalization();
-	const { title, slug } = localizations[categoryLocalizationId];
-	const pageNumber = parseInt(page_number);
+
+	const categorySlug = category.slug;
+	const categoryName = category.title;
 
 	return (
 		<FrameLayout>
 			<MetaTitle
-				suffix={`${title}, ${localizations.page.text} ${pageNumber}`}
+				suffix={`${categoryName}, ${localizations.page.text} ${pageNumber}`}
 			/>
 			<ArtworkColumns
 				slotImage={
@@ -55,11 +63,7 @@ const CategoryNumberedPage: NextPage = ({
 						{artwork.map((artworkItem) => (
 							<li key={artworkItem.id}>
 								<Link
-									href={`/${locale}/${
-										localizations.artwork.slug
-									}/${slug}/${
-										localizations[artworkItem.id].slug
-									}`}
+									href={`/${locale}/${localizations.artwork.slug}/${categorySlug}/${artworkItem.slug}`}
 								>
 									<a>
 										<ImageGridLink>
@@ -72,11 +76,7 @@ const CategoryNumberedPage: NextPage = ({
 													type="image/webp"
 												/>
 												<img
-													alt={
-														localizations[
-															artworkItem.id
-														].title
-													}
+													alt={artworkItem.title}
 													src={`/images/artwork/120/${artworkItem.images[0]}`}
 												/>
 											</picture>
@@ -89,11 +89,11 @@ const CategoryNumberedPage: NextPage = ({
 				}
 				slotContent={
 					<>
-						<h1>{title}</h1>
+						<h1>{categoryName}</h1>
 						<div>
 							{localizations.overview.text}
 							<br />
-							{page_number}/{pageCount}
+							{pageNumber}/{pageCount}
 						</div>
 					</>
 				}
@@ -103,7 +103,7 @@ const CategoryNumberedPage: NextPage = ({
 							<Link
 								href={`/${locale}/${
 									localizations.artwork.slug
-								}/${slug}/${localizations.page.slug}/${
+								}/${categorySlug}/${localizations.page.slug}/${
 									pageNumber - 1
 								}`}
 							>
@@ -127,7 +127,7 @@ const CategoryNumberedPage: NextPage = ({
 							<Link
 								href={`/${locale}/${
 									localizations.artwork.slug
-								}/${slug}/${localizations.page.slug}/${
+								}/${categorySlug}/${localizations.page.slug}/${
 									pageNumber + 1
 								}`}
 							>

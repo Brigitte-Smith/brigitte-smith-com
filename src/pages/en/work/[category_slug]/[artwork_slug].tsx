@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import { ParsedUrlQuery } from "querystring";
 
 import localizations from "../../../../../locales/en.json";
 import { ArtworkColumns } from "../../../../components/ArtworkColumns";
@@ -25,8 +26,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	return getStaticArtworkPagePaths(LOCALE);
 };
 
+export interface ArtworkPageParams extends ParsedUrlQuery {
+	artwork_slug: string;
+	category_slug: string;
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { artwork_slug, category_slug } = params;
+	const { artwork_slug, category_slug } = params as ArtworkPageParams;
+
 	return getStaticArtworkPageProps({
 		locale: LOCALE,
 		category_slug,

@@ -34,7 +34,6 @@ export function getStaticArtworkPageProps({
 	category_slug: string;
 	artwork_slug: string;
 }) {
-	console.log({ artworkCategoryMap, locale, category_slug, artwork_slug });
 	const category = artworkCategoryMap.find(
 		(category) => category_slug === category[locale].slug
 	)![locale];

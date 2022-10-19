@@ -5,7 +5,9 @@ import {
 	getStaticArtworkPageProps,
 } from "../../../../lib/artworkPage";
 import { Locale } from "../../../../lib/common";
-import ArtworkPage from "../../../en/work/[category_slug]/[artwork_slug]";
+import ArtworkPage, {
+	ArtworkPageParams,
+} from "../../../en/work/[category_slug]/[artwork_slug]";
 
 const LOCALE: Locale = "de";
 
@@ -14,7 +16,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { artwork_slug, category_slug } = params;
+	const { artwork_slug, category_slug } = params as ArtworkPageParams;
 	return getStaticArtworkPageProps({
 		locale: LOCALE,
 		category_slug,

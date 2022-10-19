@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 
-import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
+// import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
+import artworkCategoryMap from "../../../data/artwork.json";
 import directoryMapAbout from "../../../data/directoryMapAbout.json";
 
 import { SvgIcon } from "../../components/SvgIcon";
@@ -64,17 +65,17 @@ export function FrameLayout({
 							{localizations.artwork.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
-							links={directoryMapArtwork.map(({ id }) => (
+							links={artworkCategoryMap.map((category) => (
 								<Link
-									key={`artwork-category_${id}`}
+									key={`artwork-category_${category[locale].id}`}
 									href={`/${locale}/${
 										localizations.artwork.slug
 									}/${getArtworkCategoryHref(
-										localizations[id],
+										category[locale],
 										localizations.page.slug
 									)}`}
 								>
-									{localizations[id].title}
+									{category[locale].title}
 								</Link>
 							))}
 						/>
