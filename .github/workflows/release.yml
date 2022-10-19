@@ -1,0 +1,50 @@
+name: Build and Release Apps via FTP
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "minimal | standard | verbose"
+        required: true
+        default: "verbose"
+
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and release app
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: .
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 16
+
+      - name: Install packages
+        run: yarn install
+        working-directory: .
+
+      - name: Compile source
+        run: npm run build
+        working-directory: .
+
+      - name: Upload to host via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.WEBGO_SFTP_HOST }}
+          port: 21
+          username: ${{ secrets.WEBGO_SFTP_USERNAME }}
+          password: ${{ secrets.WEBGO_SFTP_PASSWORD }}
+          protocol: ftp
+          local-dir: /out/
+          server-dir: /home/www/de.absolutholz.brigitte-smith
+          log-level: ${{ github.event.inputs.logLevel }}
