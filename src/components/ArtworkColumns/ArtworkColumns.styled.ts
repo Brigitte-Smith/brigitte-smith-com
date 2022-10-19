@@ -7,7 +7,9 @@ export const ArtworkColumns = styled.div`
 	min-height: 22rem;
 `;
 
-export const ArtworkColumns_Content = styled.nav`
+export const ArtworkColumns_Artwork = styled.div``;
+
+export const ArtworkColumns_Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

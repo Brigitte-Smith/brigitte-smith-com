@@ -12,7 +12,7 @@ export function ArtworkColumns({
 }): JSX.Element {
 	return (
 		<S.ArtworkColumns>
-			<div>{slotImage}</div>
+			<S.ArtworkColumns_Artwork>{slotImage}</S.ArtworkColumns_Artwork>
 			<S.ArtworkColumns_Content>{slotContent}</S.ArtworkColumns_Content>
 			<S.ArtworkColumns_Nav>{slotNav}</S.ArtworkColumns_Nav>
 		</S.ArtworkColumns>
