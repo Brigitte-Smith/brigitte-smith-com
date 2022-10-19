@@ -19,6 +19,7 @@ import {
 	getStaticArtworkPagePaths,
 	getStaticArtworkPageProps,
 } from "../../../../lib/artworkPage";
+import { ArtworkStatistic } from "../../../../components/ArtworkStatistic";
 
 const LOCALE: Locale = "en";
 
@@ -42,7 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 function getArtworkSize(size: ArtworkSize): string {
-	return `${size.height.value} ${
+	return `${size.height.value}${
 		size.height.unit !== size.width.unit ? ` ${size.height.unit}` : ""
 	}x${size.width.value} ${size.width.unit}`;
 }
@@ -104,11 +105,15 @@ export default function ArtworkPage({
 					<>
 						<div>
 							<h1>{artworkName}</h1>
-							{artworkSize && <div>{artworkSize}</div>}
+							{artworkSize && (
+								<ArtworkStatistic label="size">
+									{artworkSize}
+								</ArtworkStatistic>
+							)}
 							{artworkDate && (
-								<div>
+								<ArtworkStatistic label="year">
 									{<time>{artworkDate.getFullYear()}</time>}
-								</div>
+								</ArtworkStatistic>
 							)}
 						</div>
 						<div>
