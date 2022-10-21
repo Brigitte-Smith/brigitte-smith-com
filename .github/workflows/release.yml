@@ -34,15 +34,15 @@ jobs:
         working-directory: .
 
       - name: Create locale files
-        run: node lib/createLocaleFiles
+        run: node ./lib/createLocaleFiles.mjs
         working-directory: .
 
       - name: Create artwork files
-        run: node lib/parseContent
+        run: node ./lib/parseContent.mjs
         working-directory: .
 
       - name: Create about files
-        run: node lib/createDirectoryMapAbout
+        run: node ./lib/createDirectoryMapAbout.mjs
         working-directory: .
 
       - name: Compile source
