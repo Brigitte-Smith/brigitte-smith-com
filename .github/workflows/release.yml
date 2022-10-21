@@ -29,6 +29,18 @@ jobs:
         with:
           node-version: 16
 
+      - name: Create locale files
+        run: node lib/createLocaleFiles
+        working-directory: .
+
+      - name: Create artwork files
+        run: node lib/parseContent
+        working-directory: .
+
+      - name: Create about files
+        run: node lib/createDirectoryMapAbout
+        working-directory: .
+
       - name: Install packages
         run: yarn install
         working-directory: .
