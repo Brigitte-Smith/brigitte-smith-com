@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
-import localizations from "../../../../../locales/en.json";
 import { ArtworkColumns } from "../../../../components/ArtworkColumns";
 import { ArtworkImage } from "../../../../components/ArtworkImage";
 import { MetaTitle } from "../../../../components/MetaTitle";
@@ -20,6 +19,7 @@ import {
 	getStaticArtworkPageProps,
 } from "../../../../lib/artworkPage";
 import { ArtworkStatistic } from "../../../../components/ArtworkStatistic";
+import topLevel from "../../../../../data/topLevel.json";
 
 const LOCALE: Locale = "en";
 
@@ -125,7 +125,7 @@ export default function ArtworkPage({
 					<>
 						{previousArtwork ? (
 							<Link
-								href={`/${locale}/${localizations.artwork.slug}/${categorySlug}/${previousArtworkSlug}`}
+								href={`/${locale}/${topLevel.artwork[locale].data.slug}/${categorySlug}/${previousArtworkSlug}`}
 							>
 								<a aria-label={`go to ${previousArtworkTitle}`}>
 									<SvgIcon aria-hidden="true">
@@ -141,7 +141,7 @@ export default function ArtworkPage({
 						)}
 						{nextArtwork && (
 							<Link
-								href={`/${locale}/${localizations.artwork.slug}/${categorySlug}/${nextArtworkSlug}`}
+								href={`/${locale}/${topLevel.artwork[locale].data.slug}/${categorySlug}/${nextArtworkSlug}`}
 							>
 								<a aria-label={`go to ${nextArtworkTitle}`}>
 									<SvgIcon aria-hidden="true">

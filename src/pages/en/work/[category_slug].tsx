@@ -45,12 +45,6 @@ export function getStaticArtworkProps({
 	locale: Locale;
 	category_slug: string;
 }) {
-	// const localizations = getLocalizations(locale);
-
-	// const [categoryLocalizationId] = Object.entries(localizations).find(
-	// 	([, localization]) => localization?.slug === category_slug
-	// );
-
 	const { title, content, slug } = artworkCategoryMap.find((category) => {
 		return category[locale].slug === category_slug;
 	})![locale];
@@ -79,7 +73,6 @@ const CategoryPage: NextPage<ICategoryPageProps> = ({
 	categoryLocalizationId: string;
 }) => {
 	const { locale } = useLocalization();
-	console.log({ localizations });
 
 	return (
 		<FrameLayout>

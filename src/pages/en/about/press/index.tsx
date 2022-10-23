@@ -20,7 +20,6 @@ interface IPressIndexPageProps {
 export function getStaticPressIndexPageProps({ locale }: { locale: Locale }) {
 	const { title } = aboutCategories.press[locale];
 	const press = pressArticles.map((pressArticle) => pressArticle[locale]);
-	console.log({ press });
 
 	return {
 		props: { title, press },
