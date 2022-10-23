@@ -34,15 +34,23 @@ jobs:
         working-directory: .
 
       - name: Create locale files
-        run: node ./lib/createLocaleFiles.mjs
+        run: node ./lib/parseLocalizations.mjs
         working-directory: .
 
       - name: Create artwork files
-        run: node ./lib/parseContent.mjs
+        run: node ./lib/parseTopLevelContent.mjs
         working-directory: .
 
       - name: Create about files
-        run: node ./lib/createDirectoryMapAbout.mjs
+        run: node ./lib/parseAboutContent.mjs
+        working-directory: .
+
+      - name: Create press files
+        run: node ./lib/parsePressContent.mjs
+        working-directory: .
+
+      - name: Create artwork files
+        run: node ./lib/parseArtworkContent.mjs
         working-directory: .
 
       - name: Compile source
