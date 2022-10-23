@@ -21,8 +21,6 @@ export function getStaticArtworkCategoryPagePaths(locale: Locale) {
 		})
 		.flat();
 
-	console.log(paths);
-
 	return {
 		paths,
 		fallback: false,
@@ -55,8 +53,6 @@ export function getStaticArtworkCategoryPageProps({
 		pageNumber,
 		pageCount,
 	};
-
-	console.log({ category, artwork, pageNumber, pageCount, props });
 
 	return { props };
 }

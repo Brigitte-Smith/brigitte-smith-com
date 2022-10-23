@@ -1,20 +1,32 @@
 import type { GetStaticProps, NextPage } from "next";
 import ReactMarkdown from "react-markdown";
 
-import { MetaTitle } from "../../../components/MetaTitle";
-import { useLocalization } from "../../../context/LocalizationContext";
-import { FrameLayout } from "../../../layouts/FrameLayout";
+import aboutCategories from "../../../../data/about.json";
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+import { MetaTitle } from "../../../components/MetaTitle";
+import { FrameLayout } from "../../../layouts/FrameLayout";
+import { Locale } from "../../../lib/common";
+
+const LOCALE: Locale = "en";
+
+interface IBiographyPageProps {
+	title: string;
+	content: string;
+}
+
+export function getStaticBiographyPageProps({ locale }: { locale: Locale }) {
+	const { title, content } = aboutCategories.biography[locale];
+
 	return {
-		props: {},
+		props: { title, content },
 	};
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticBiographyPageProps({ locale: LOCALE });
 };
 
-const BiographyPage: NextPage = () => {
-	const { localizations } = useLocalization();
-	const { title, content } = localizations.about_biography;
-
+const BiographyPage: NextPage<IBiographyPageProps> = ({ title, content }) => {
 	return (
 		<FrameLayout>
 			<MetaTitle suffix={title} />

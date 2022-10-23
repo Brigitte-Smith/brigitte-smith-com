@@ -1,11 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from "next";
 
 import type { Locale } from "../../../lib/common";
-import {
+import CategoryPage, {
 	getStaticArtworkPaths,
 	getStaticArtworkProps,
-} from "../../../lib/artwork";
-import CategoryPage from "../../en/work/[category_slug]";
+} from "../../en/work/[category_slug]";
 
 const LOCALE: Locale = "de";
 

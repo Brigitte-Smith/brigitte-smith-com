@@ -1,7 +1,6 @@
 ---
-channels:
-  amazon:
-    text: "Artwork on Amazon"
+artworkOnAmazon:
+  text: "Artwork on Amazon"
 page:
   text: "page"
   slug: "page"

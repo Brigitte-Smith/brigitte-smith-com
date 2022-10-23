@@ -3,23 +3,40 @@ import ReactMarkdown from "react-markdown";
 
 import { CenteredLayout } from "../../layouts/CenteredLayout";
 import { MetaTitle } from "../../components/MetaTitle";
-import { useLocalization } from "../../context/LocalizationContext";
+import topLevel from "../../../data/topLevel.json";
+import type { Locale } from "../../lib/common";
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+const LOCALE: Locale = "en";
+
+interface IImprintPageProps {
+	title: string;
+	content: string;
+}
+
+export function getStaticImprintPageProps({ locale }: { locale: Locale }) {
+	const {
+		data: { title },
+		content,
+	} = topLevel.imprint[locale];
+
 	return {
-		props: {},
+		props: {
+			title,
+			content,
+		},
 	};
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticImprintPageProps({ locale: LOCALE });
 };
 
-const ImprintPage: NextPage = () => {
-	const { localizations } = useLocalization();
-
+const ImprintPage: NextPage<IImprintPageProps> = ({ title, content }) => {
 	return (
 		<>
-			<MetaTitle suffix={localizations.imprint.title} />
+			<MetaTitle suffix={title} />
 			<CenteredLayout>
-				{/* <h1>{localizations.imprint.title}</h1> */}
-				<ReactMarkdown>{localizations.imprint.content}</ReactMarkdown>
+				<ReactMarkdown>{content}</ReactMarkdown>
 			</CenteredLayout>
 		</>
 	);

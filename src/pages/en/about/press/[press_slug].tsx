@@ -5,16 +5,53 @@ import { MetaTitle } from "../../../../components/MetaTitle";
 import { useLocalization } from "../../../../context/LocalizationContext";
 import { FrameLayout } from "../../../../layouts/FrameLayout";
 import type { Locale } from "../../../../lib/common";
-import {
-	getStaticPressPaths,
-	getStaticPressProps,
-} from "../../../../lib/press";
+import pressArticles from "../../../../../data/press.json";
+import { Iframe } from "../../../../components/Iframe";
 
 const LOCALE: Locale = "en";
+
+interface IPressPageProps {
+	title: string;
+	content: string;
+	language?: Locale;
+	files?: string[];
+}
+
+export function getStaticPressPaths(locale: Locale) {
+	const paths = pressArticles.map((pressArticle) => {
+		return {
+			params: {
+				press_slug: pressArticle[locale].slug,
+			},
+		};
+	});
+
+	return {
+		paths,
+		fallback: false,
+	};
+}
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
 	return getStaticPressPaths(LOCALE);
 };
+
+export function getStaticPressProps({
+	locale,
+	press_slug,
+}: {
+	locale: Locale;
+	press_slug: string;
+}) {
+	const press = pressArticles.find(
+		(pressArticle) => pressArticle[locale].slug === press_slug
+	)![locale];
+	const { title, content, language = "en", files } = press;
+
+	return {
+		props: { title, content, language, files },
+	};
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	return getStaticPressProps({
@@ -23,22 +60,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	});
 };
 
-const PressPage: NextPage = ({ pressLocalizationId }) => {
+const PressPage: NextPage<IPressPageProps> = ({
+	title,
+	content,
+	language,
+	files,
+}) => {
 	const { locale, localizations } = useLocalization();
 
 	return (
 		<FrameLayout>
-			<MetaTitle suffix={localizations[pressLocalizationId].title} />
-			<div
-				lang={
-					localizations[pressLocalizationId]?.language !== locale &&
-					localizations[pressLocalizationId]?.language
-				}
-			>
-				<ReactMarkdown>
-					{localizations[pressLocalizationId].content}
-				</ReactMarkdown>
+			<MetaTitle suffix={title} />
+			<div lang={language !== locale && language}>
+				<ReactMarkdown>{content}</ReactMarkdown>
 			</div>
+			{files && <Iframe src={`/${files[0]}`} />}
 		</FrameLayout>
 	);
 };

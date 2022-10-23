@@ -1,5 +1,14 @@
-import PressIndexPage from "../../../en/about/press";
+import type { GetStaticProps } from "next";
 
-export { getStaticProps } from "../../../en/about/press";
+import { Locale } from "../../../../lib/common";
+import PressIndexPage, {
+	getStaticPressIndexPageProps,
+} from "../../../en/about/press/index";
+
+const LOCALE: Locale = "de";
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticPressIndexPageProps({ locale: LOCALE });
+};
 
 export default PressIndexPage;

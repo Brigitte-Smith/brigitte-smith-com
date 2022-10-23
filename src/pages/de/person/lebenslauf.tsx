@@ -1,11 +1,14 @@
 import type { GetStaticProps } from "next";
 
-import BiographyPage from "../../en/about/biography";
+import { Locale } from "../../../lib/common";
+import BiographyPage, {
+	getStaticBiographyPageProps,
+} from "../../en/about/biography";
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-	return {
-		props: {},
-	};
+const LOCALE: Locale = "de";
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticBiographyPageProps({ locale: LOCALE });
 };
 
 export default BiographyPage;

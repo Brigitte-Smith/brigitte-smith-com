@@ -2,8 +2,10 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 // import directoryMapArtwork from "../../../data/directoryMapArtwork.json";
+import aboutCategoryMap from "../../../data/about.json";
 import artworkCategoryMap from "../../../data/artwork.json";
-import directoryMapAbout from "../../../data/directoryMapAbout.json";
+// import directoryMapAbout from "../../../data/directoryMapAbout.json";
+import topLevel from "../../../data/topLevel.json";
 
 import { SvgIcon } from "../../components/SvgIcon";
 import { useLocalization } from "../../context/LocalizationContext";
@@ -24,6 +26,7 @@ export function FrameLayout({
 	children: ReactNode;
 }): JSX.Element {
 	const { locale, localizations } = useLocalization();
+	const aboutCategories = Object.values(aboutCategoryMap);
 
 	return (
 		<S.FrameLayout>
@@ -33,7 +36,7 @@ export function FrameLayout({
 					className="link--external"
 					href="https://www.amazon.de/Brigitte-Smith-Art/dp/B01N2NA0DJ"
 				>
-					{localizations.channels.amazon.text}
+					{localizations.artworkOnAmazon.text}
 					<SvgIcon aria-hidden="true">
 						<path
 							fill="currentColor"
@@ -42,34 +45,33 @@ export function FrameLayout({
 					</SvgIcon>
 				</a>
 			</S.FrameLayout_Header>
-
 			<S.FrameLayout_Body>
 				<S.FrameLayout_BodyPanels>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localizations.about.title}
+							{topLevel.about[locale].data.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
-							links={directoryMapAbout.map(({ id }) => (
+							links={aboutCategories.map((category) => (
 								<Link
-									key={`about-category_${id}`}
-									href={`/${locale}/${localizations.about.slug}/${localizations[id].slug}`}
+									key={`about-category_${category[locale].id}`}
+									href={`/${locale}/${topLevel.about[locale].data.slug}/${category[locale].slug}`}
 								>
-									{localizations[id].title}
+									{category[locale].title}
 								</Link>
 							))}
 						/>
 					</S.FrameLayout_Panel>
 					<S.FrameLayout_Panel>
 						<S.FrameLayout_PanelHeadline>
-							{localizations.artwork.title}
+							{topLevel.artwork[locale].data.title}
 						</S.FrameLayout_PanelHeadline>
 						<NavigationLinkList
 							links={artworkCategoryMap.map((category) => (
 								<Link
 									key={`artwork-category_${category[locale].id}`}
 									href={`/${locale}/${
-										localizations.artwork.slug
+										topLevel.artwork[locale].data.slug
 									}/${getArtworkCategoryHref(
 										category[locale],
 										localizations.page.slug
@@ -85,10 +87,9 @@ export function FrameLayout({
 					{children}
 				</S.FrameLayout_MainContentPanel>
 			</S.FrameLayout_Body>
-
 			<S.FrameLayout_Footer>
-				<Link href={`/${locale}/${localizations.imprint.slug}`}>
-					{localizations.imprint.title}
+				<Link href={`/${locale}/${topLevel.imprint[locale].data.slug}`}>
+					{topLevel.imprint[locale].data.title}
 				</Link>
 
 				{locale === "en" ? (
@@ -101,8 +102,8 @@ export function FrameLayout({
 					</Link>
 				)}
 
-				<Link href={`/${locale}/${localizations.contact.slug}`}>
-					{localizations.contact.title}
+				<Link href={`/${locale}/${topLevel.contact[locale].data.slug}`}>
+					{topLevel.contact[locale].data.title}
 				</Link>
 			</S.FrameLayout_Footer>
 		</S.FrameLayout>

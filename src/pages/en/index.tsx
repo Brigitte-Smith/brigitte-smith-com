@@ -1,23 +1,35 @@
 import type { GetStaticProps, NextPage } from "next";
 import ReactMarkdown from "react-markdown";
 
-import { useLocalization } from "../../context/LocalizationContext";
+import topLevel from "../../../data/topLevel.json";
+
+import { Locale } from "../../lib/common";
 import { HomeLayout } from "../../layouts/HomeLayout";
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+const LOCALE: Locale = "en";
+
+export interface HomePageProps {
+	content: string;
+}
+
+export function getStaticHomePageProps({ locale }: { locale: Locale }) {
+	const { content } = topLevel.home[locale];
+
 	return {
-		props: {},
+		props: {
+			content,
+		},
 	};
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticHomePageProps({ locale: LOCALE });
 };
 
-interface HomePageProps {}
-
-const HomePage: NextPage<HomePageProps> = () => {
-	const { localizations } = useLocalization();
-
+const HomePage: NextPage<HomePageProps> = ({ content }) => {
 	return (
 		<HomeLayout>
-			<ReactMarkdown>{localizations.home.content}</ReactMarkdown>
+			<ReactMarkdown>{content}</ReactMarkdown>
 		</HomeLayout>
 	);
 };

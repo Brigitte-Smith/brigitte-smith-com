@@ -1,11 +1,14 @@
 import type { GetStaticProps } from "next";
 
-import ExhibitionsPage from "../../en/about/exhibitions";
+import { Locale } from "../../../lib/common";
+import ExhibitionsPage, {
+	getStaticExhibitionsPageProps,
+} from "../../en/about/exhibitions";
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-	return {
-		props: {},
-	};
+const LOCALE: Locale = "de";
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticExhibitionsPageProps({ locale: LOCALE });
 };
 
 export default ExhibitionsPage;

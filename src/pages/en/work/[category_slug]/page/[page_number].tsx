@@ -14,6 +14,7 @@ import {
 	getStaticArtworkCategoryPageProps,
 } from "../../../../../lib/artworkCategoryPage";
 import type { Locale } from "../../../../../lib/common";
+import topLevel from "../../../../../../data/topLevel.json";
 
 const LOCALE: Locale = "en";
 
@@ -63,7 +64,7 @@ const CategoryNumberedPage: NextPage = ({
 						{artwork.map((artworkItem) => (
 							<li key={artworkItem.id}>
 								<Link
-									href={`/${locale}/${localizations.artwork.slug}/${categorySlug}/${artworkItem.slug}`}
+									href={`/${locale}/${topLevel.artwork[locale].data.slug}/${categorySlug}/${artworkItem.slug}`}
 								>
 									<a>
 										<ImageGridLink>
@@ -102,7 +103,7 @@ const CategoryNumberedPage: NextPage = ({
 						{pageNumber > 1 ? (
 							<Link
 								href={`/${locale}/${
-									localizations.artwork.slug
+									topLevel.artwork[locale].data.slug
 								}/${categorySlug}/${localizations.page.slug}/${
 									pageNumber - 1
 								}`}
@@ -126,7 +127,7 @@ const CategoryNumberedPage: NextPage = ({
 						{pageCount > 1 && pageNumber < pageCount && (
 							<Link
 								href={`/${locale}/${
-									localizations.artwork.slug
+									topLevel.artwork[locale].data.slug
 								}/${categorySlug}/${localizations.page.slug}/${
 									pageNumber + 1
 								}`}

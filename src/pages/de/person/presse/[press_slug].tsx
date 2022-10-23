@@ -1,11 +1,10 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 import { Locale } from "../../../../lib/common";
-import PressPage from "../../../en/about/press/[press_slug]";
-import {
+import PressPage, {
 	getStaticPressPaths,
 	getStaticPressProps,
-} from "../../../../lib/press";
+} from "../../../en/about/press/[press_slug]";
 
 const LOCALE: Locale = "de";
 

@@ -1,2 +1,12 @@
-import ContactPage from "../en/contact";
+import { GetStaticProps } from "next";
+
+import { Locale } from "../../lib/common";
+import ContactPage, { getStaticContactPageProps } from "../en/contact";
+
+const LOCALE: Locale = "de";
+
+export const getStaticProps: GetStaticProps = async () => {
+	return getStaticContactPageProps({ locale: LOCALE });
+};
+
 export default ContactPage;

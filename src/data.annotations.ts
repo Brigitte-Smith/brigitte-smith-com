@@ -41,3 +41,8 @@ interface ArtworkTaxonomy {
 interface ArtworkCategoryData {
 	categories: ArtworkCategory[];
 }
+
+export interface Localization {
+	de: string;
+	en: string;
+}

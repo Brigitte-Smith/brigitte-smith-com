@@ -17,8 +17,6 @@ export function getStaticArtworkPagePaths(locale: Locale) {
 		})
 		.flat();
 
-	// console.log(paths);
-
 	return {
 		paths,
 		fallback: false,
@@ -57,8 +55,6 @@ export function getStaticArtworkPageProps({
 	if (nextArtwork) {
 		props["nextArtwork"] = nextArtwork;
 	}
-
-	// console.log({ category, artwork, previousArtwork, nextArtwork, props });
 
 	return { props };
 }
