@@ -1,0 +1,50 @@
+name: Generate images
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "minimal | standard | verbose"
+        required: true
+        default: "verbose"
+
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and release app
+
+    runs-on: ubuntu-latest
+    env:
+      working-directory: .
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install packages
+        run: npm install
+        working-directory: .
+
+      - name: Generate image files
+        run: node ./lib/copyImagesToPublic.mjs
+        working-directory: .
+
+      - name: Upload to host via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          protocol: ftp
+          local-dir: ./public/images
+          server-dir: /home/www/de.stephenwood.brigitte-smith/images
+          log-level: ${{ github.event.inputs.logLevel }}
