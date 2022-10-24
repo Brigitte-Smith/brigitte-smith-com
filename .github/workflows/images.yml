@@ -45,6 +45,6 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftp
-          local-dir: ./public/images
-          server-dir: /home/www/de.stephenwood.brigitte-smith/images
+          local-dir: ./public/images/
+          server-dir: /home/www/de.stephenwood.brigitte-smith/images/
           log-level: ${{ github.event.inputs.logLevel }}
