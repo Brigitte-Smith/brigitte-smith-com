@@ -74,7 +74,7 @@ const PressPage: NextPage<IPressPageProps> = ({
 			<div lang={language !== locale && language}>
 				<ReactMarkdown>{content}</ReactMarkdown>
 			</div>
-			{files && <Iframe src={`/${files[0]}`} />}
+			{files && files.length > 0 && <Iframe src={`/${files[0]}`} />}
 		</FrameLayout>
 	);
 };
