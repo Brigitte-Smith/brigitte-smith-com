@@ -8,6 +8,10 @@ import { PressList } from "../../../../components/PressList";
 import { FrameLayout } from "../../../../layouts/FrameLayout";
 import { Locale } from "../../../../lib/common";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 interface Press {}

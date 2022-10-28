@@ -5,6 +5,10 @@ import BiographyPage, {
 	getStaticBiographyPageProps,
 } from "../../en/about/biography";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "de";
 
 export const getStaticProps: GetStaticProps = async () => {

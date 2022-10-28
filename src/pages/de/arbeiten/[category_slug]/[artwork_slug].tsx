@@ -9,6 +9,10 @@ import ArtworkPage, {
 	ArtworkPageParams,
 } from "../../../en/work/[category_slug]/[artwork_slug]";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "de";
 
 export const getStaticPaths: GetStaticPaths = async () => {

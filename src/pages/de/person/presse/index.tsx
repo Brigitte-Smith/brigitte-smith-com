@@ -5,6 +5,10 @@ import PressIndexPage, {
 	getStaticPressIndexPageProps,
 } from "../../../en/about/press/index";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "de";
 
 export const getStaticProps: GetStaticProps = async () => {

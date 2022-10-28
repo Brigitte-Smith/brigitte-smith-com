@@ -16,6 +16,10 @@ import {
 import type { Locale } from "../../../../../lib/common";
 import topLevel from "../../../../../../data/topLevel.json";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async () => {

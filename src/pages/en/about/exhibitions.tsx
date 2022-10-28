@@ -8,6 +8,10 @@ import { Timeline } from "../../../components/Timeline";
 import { FrameLayout } from "../../../layouts/FrameLayout";
 import { Locale } from "../../../lib/common";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 interface IExhibitionsPageProps {

@@ -8,6 +8,10 @@ import type { Locale } from "../../../../lib/common";
 import pressArticles from "../../../../../data/press.json";
 import { Iframe } from "../../../../components/Iframe";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 interface IPressPageProps {

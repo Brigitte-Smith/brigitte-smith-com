@@ -5,6 +5,10 @@ import ExhibitionsPage, {
 	getStaticExhibitionsPageProps,
 } from "../../en/about/exhibitions";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "de";
 
 export const getStaticProps: GetStaticProps = async () => {

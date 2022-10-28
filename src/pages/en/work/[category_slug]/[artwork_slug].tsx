@@ -21,6 +21,10 @@ import {
 import { ArtworkStatistic } from "../../../../components/ArtworkStatistic";
 import topLevel from "../../../../../data/topLevel.json";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 export const getStaticPaths: GetStaticPaths = async () => {

@@ -6,6 +6,10 @@ import topLevel from "../../../data/topLevel.json";
 import { Locale } from "../../lib/common";
 import { HomeLayout } from "../../layouts/HomeLayout";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 export interface HomePageProps {

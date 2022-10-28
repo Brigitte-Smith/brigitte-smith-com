@@ -6,6 +6,10 @@ import { MetaTitle } from "../../components/MetaTitle";
 import topLevel from "../../../data/topLevel.json";
 import type { Locale } from "../../lib/common";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 interface IContactPageProps {

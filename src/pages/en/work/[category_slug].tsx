@@ -11,6 +11,10 @@ import artworkCategoryMap from "../../../../data/artwork.json";
 import localizations from "../../../../data/localizations.json";
 import topLevel from "../../../../data/topLevel.json";
 
+export const config = {
+	unstable_runtimeJS: false,
+};
+
 const LOCALE: Locale = "en";
 
 interface ICategoryPageProps {
