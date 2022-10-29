@@ -8,6 +8,7 @@ import type { Locale } from "../../../../lib/common";
 import pressArticles from "../../../../../data/press.json";
 import { Iframe } from "../../../../components/Iframe";
 
+// dirty way to render static pages without next's script files
 export const config = {
 	unstable_runtimeJS: false,
 };

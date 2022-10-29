@@ -6,6 +6,7 @@ import { MetaTitle } from "../../components/MetaTitle";
 import topLevel from "../../../data/topLevel.json";
 import type { Locale } from "../../lib/common";
 
+// dirty way to render static pages without next's script files
 export const config = {
 	unstable_runtimeJS: false,
 };

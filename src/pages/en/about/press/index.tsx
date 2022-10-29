@@ -8,6 +8,7 @@ import { PressList } from "../../../../components/PressList";
 import { FrameLayout } from "../../../../layouts/FrameLayout";
 import { Locale } from "../../../../lib/common";
 
+// dirty way to render static pages without next's script files
 export const config = {
 	unstable_runtimeJS: false,
 };
