@@ -6,10 +6,10 @@ taxonomy:
     - "Farbe auf Gold"
 size:
   height:
-    value: 80
+    value: 90
     unit: cm
   width:
-    value: 80
+    value: 90
     unit: cm
 date: 2021
 ---

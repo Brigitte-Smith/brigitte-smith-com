@@ -3,10 +3,10 @@ title: "African Spirit"
 slug: african-spirit
 size:
   height:
-    value: 45
+    value: 44
     unit: cm
   width:
-    value: 42
+    value: 44
     unit: cm
 date: 2017
 taxonomy:
