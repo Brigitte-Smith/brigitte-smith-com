@@ -1,6 +1,6 @@
 ---
-title: "Guardians of Nature"
-slug: guardians-of-nature
+title: "A Guardian of Nature"
+slug: a-guardian-of-nature
 taxonomy:
   tag:
     - "Farbe auf Gold"
