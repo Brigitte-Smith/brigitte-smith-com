@@ -1,6 +1,8 @@
 ---
 title: "Kosmische Spiegelwelten"
 slug: kosmische-spiegelwelten
+sortField: date
+sortDirection: desc
 ---
 
 # Kosmische Spiegelwelten
