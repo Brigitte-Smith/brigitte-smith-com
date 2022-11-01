@@ -1,4 +1,6 @@
 ---
-title: "The Virtues"
-slug: the-virtues
+title: "Vogel, Frau, Blume, Blatt"
+slug: vogel-frau-blume-blatt
+sortField: date
+sortDirection: desc
 ---
