@@ -3,7 +3,7 @@ title: "Cosmic Impulse: Love"
 slug: cosmic-impulse-love
 taxonomy:
   tag:
-    - "Farbe auf Gold"
+    - "Farbe auf Silber"
 size:
   height:
     value: 60

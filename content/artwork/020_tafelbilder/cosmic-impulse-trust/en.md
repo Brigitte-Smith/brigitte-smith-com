@@ -3,7 +3,7 @@ title: "Cosmic Impulse: Trust"
 slug: cosmic-impulse-trust
 taxonomy:
   tag:
-    - "Farbe auf Gold"
+    - "Farbe auf Silber"
 size:
   height:
     value: 60
