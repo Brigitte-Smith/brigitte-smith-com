@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import Link from "next/link";
 import { ParsedUrlQuery } from "querystring";
 
@@ -6,21 +7,27 @@ import { ArtworkColumns } from "../../../../components/ArtworkColumns";
 import { ArtworkImage } from "../../../../components/ArtworkImage";
 import { MetaTitle } from "../../../../components/MetaTitle";
 import { SvgIcon } from "../../../../components/SvgIcon";
+import { ArtworkStatistic } from "../../../../components/ArtworkStatistic";
+import { VisuallyHidden } from "../../../../components/VisuallyHidden";
+import { Breadcrumbs } from "../../../../components/Breadcrumbs";
+import type { Breadcrumb } from "../../../../components/Breadcrumbs/Breadcrumbs.annotations";
+
 import { useLocalization } from "../../../../context/LocalizationContext";
+
 import { FrameLayout } from "../../../../layouts/FrameLayout";
+
 import type { Locale } from "../../../../lib/common";
+import {
+	getStaticArtworkPagePaths,
+	getStaticArtworkPageProps,
+} from "../../../../lib/artworkPage";
+
 import {
 	Artwork,
 	ArtworkCategory,
 	ArtworkSize,
 } from "../../../../data.annotations";
-import {
-	getStaticArtworkPagePaths,
-	getStaticArtworkPageProps,
-} from "../../../../lib/artworkPage";
-import { ArtworkStatistic } from "../../../../components/ArtworkStatistic";
 import topLevel from "../../../../../data/topLevel.json";
-import Head from "next/head";
 
 // dirty way to render static pages without next's script files
 export const config = {
@@ -73,12 +80,14 @@ export default function ArtworkPage({
 
 	const image = artwork.images[0];
 	const artworkName = artwork.title;
+	const artworkSlug = artwork.slug;
 	const artworkSize = artwork.size ? getArtworkSize(artwork.size) : undefined;
 	const artworkDate = artwork.date
 		? new Date(artwork.date.toString())
 		: undefined;
 	const artworkCount = category.artwork.length;
 	const categorySlug = category.slug;
+	const categoryName = category.title;
 	const previousArtworkSlug = previousArtwork?.slug;
 	const previousArtworkTitle = previousArtwork?.title;
 	const nextArtworkSlug = nextArtwork?.slug;
@@ -111,6 +120,25 @@ export default function ArtworkPage({
 		];
 	}
 
+	const breadcrumbs: Breadcrumb[] = [
+		{
+			href: `/${locale}/`,
+			text: "Home",
+		},
+		{
+			href: `/${locale}/${topLevel.artwork[locale].data.slug}/`,
+			text: topLevel.artwork[locale].data.title,
+		},
+		{
+			href: `/${locale}/${topLevel.artwork[locale].data.slug}/${categorySlug}/`,
+			text: categoryName,
+		},
+		{
+			href: `/${locale}/${topLevel.artwork[locale].data.slug}/${categorySlug}/${artworkSlug}/`,
+			text: artworkName,
+		},
+	];
+
 	return (
 		<>
 			<Head>
@@ -120,6 +148,9 @@ export default function ArtworkPage({
 			</Head>
 			<FrameLayout>
 				<MetaTitle suffix={artworkName} />
+				<VisuallyHidden>
+					<Breadcrumbs levels={breadcrumbs} />
+				</VisuallyHidden>
 				<ArtworkColumns
 					slotImage={
 						<Link href={`/images/artwork/${image}`}>
