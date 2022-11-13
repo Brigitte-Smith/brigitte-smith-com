@@ -10,7 +10,7 @@ export function HomeBillboard(): JSX.Element {
 					srcSet="/images/IndexHintergrund.webp"
 					type="image/webp"
 				/>
-				<img alt="" src="IndexHintergrund.jpg" />
+				<S.HomeBillboard_Img alt="" src="IndexHintergrund.jpg" />
 			</picture>
 
 			<S.HomeBillboard_Foreground>

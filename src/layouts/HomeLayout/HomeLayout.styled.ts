@@ -8,4 +8,5 @@ export const HomeLayout = styled(CenteredLayout)`
 	font-size: 28px;
 	font-weight: 200;
 	max-width: none;
+	padding: 10px;
 `;

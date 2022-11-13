@@ -1,9 +1,30 @@
 import styled from "styled-components";
 
 export const HomeBillboard = styled.main`
-	margin: 7rem auto;
+	aspect-ratio: 9 / 10;
+	margin: 1rem auto;
+	max-height: calc(100vh - 2rem);
 	position: relative;
-	width: 45rem;
+	width: min(90%, 45rem);
+
+	@media (min-width: 500px) {
+		aspect-ratio: auto;
+		margin: 7rem auto;
+		max-height: none;
+	}
+`;
+
+export const HomeBillboard_Img = styled.img`
+	position: absolute;
+	object-fit: cover;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	@media (min-width: 500px) {
+		position: relative;
+	}
 `;
 
 export const HomeBillboard_Foreground = styled.nav`

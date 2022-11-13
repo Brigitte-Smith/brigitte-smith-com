@@ -8,6 +8,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<>
 			<Head>
 				<title>Brigitte Smith</title>
+				<meta
+					name="viewport"
+					content="width=device-width,initial-scale=1"
+				/>
 			</Head>
 			<GlobalStyle />
 			<Component {...pageProps} />
