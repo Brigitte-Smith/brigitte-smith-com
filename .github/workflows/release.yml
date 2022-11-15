@@ -66,5 +66,5 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           protocol: ftp
           local-dir: ./out/
-          server-dir: /home/www/de.stephenwood.brigitte-smith/
+          server-dir: ${{ secrets.SFTP_DIRECTORY }}
           log-level: ${{ github.event.inputs.logLevel }}
