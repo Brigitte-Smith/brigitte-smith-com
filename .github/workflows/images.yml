@@ -48,3 +48,4 @@ jobs:
           local-dir: ./public/images/
           server-dir: ${{ secrets.SFTP_DIRECTORY }}images/
           log-level: ${{ github.event.inputs.logLevel }}
+          state-name: .ftp-deploy-sync-state.json
