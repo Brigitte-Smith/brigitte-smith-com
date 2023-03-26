@@ -189,6 +189,7 @@ export default function ArtworkPage({
 										}
 									</ArtworkStatistic>
 								)}
+								{artwork.content}
 							</div>
 							<div>
 								{artworkIndex + 1}/{artworkCount}
