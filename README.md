@@ -1,13 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# brigitte-smith.com
 
-## Getting Started
+This is the repository for the digital artwork and website of the artist Brigitte Smith. The site is built with [Next.js](https://nextjs.org/) and is hosted at [www.brigitte-smith.com](http://www.brigitte-smith.com).
 
-First, run the development server:
+## Content maintenance
+
+All content and localized text is stored in the [content](https://github.com/Brigitte-Smith/brigitte-smith-com/tree/nextjs-refactor/content) directory of this repository.
+
+### Textual content
+
+Textual content is present in the form of markdown files. It consists of `frontmatter`, which are the values specified at the start of a `.md` file between the `---` dividers and the main content for the associated directory and webpage.
+
+### Content localization
+
+The site is localized for the German and English languages and any text, even if identical for both languages, should be added to both `en.md` and `de.md` files of each directory.
+
+### Working with files
+
+## Releasing changes
+
+There are two main tasks that build and release the assets for the production website.
+
+### Generate images
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm run transformImages
+```
+
+### Generate website
+
+```bash
+$ npm run transformContent
+```
+
+Then the generated content needs to be manually uploaded via FTP.
+
+## Working locally
+
+The development server is started with:
+
+```bash
+$ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -27,12 +59,6 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 ## Generate data from markdown
 
 ```bash
@@ -48,33 +74,3 @@ $ node ./lib/createLocaleFiles.mjs
 https://commonmark.org/
 https://commonmark.org/help/
 https://spec.commonmark.org/
-
-## Site Structure
-
-/en
-/en/home
-/en/contact
-/en/imprint
-/en/person
-/en/person/biography
-/en/person/exhibitions
-/en/person/press
-/en/person/press/[press_item]
-/en/work
-/en/work/[work_category]
-/en/work/[work_category]/page/[page_number]
-/en/work/[work_category]/[artwork]
-
-/de
-/de/home
-/de/kontakt
-/de/impressum
-/de/person
-/de/person/lebenslauf
-/de/person/austellungen
-/de/person/presse
-/de/person/presse/[press_item]
-/de/arbeit
-/de/arbeit/[work_category]
-/de/arbeit/[work_category]/seite/[page_number]
-/de/arbeit/[work_category]/[artwork]
